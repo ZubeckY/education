@@ -1,5 +1,7 @@
 <template>
-  <v-form v-model="valid" class="pa-2">
+  <v-form @submit.prevent
+          v-model="valid"
+          class="pa-2">
     <v-card-title class="pa-2">Вход в систему</v-card-title>
     <v-card-text class="pa-2">
       <v-text-field v-model="model.login"
@@ -47,6 +49,7 @@ export default class Auth extends Vue{
     login: '',
     password: ''
   }
+
   show: boolean = false
   valid: boolean = false
   rules: any = {
@@ -55,7 +58,7 @@ export default class Auth extends Vue{
   }
 
   routing (link: string) {
-    return this.$router.push(link)
+    this.$router.push(link)
   }
 
   tryLogin () {

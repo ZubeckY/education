@@ -1,5 +1,7 @@
 <template>
-  <v-form v-model="valid" class="pa-2">
+  <v-form @submit.prevent
+          v-model="valid"
+          class="pa-2">
     <v-card-title class="pa-2">Название формы</v-card-title>
     <v-card-text class="pa-2">
 
