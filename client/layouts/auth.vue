@@ -2,7 +2,7 @@
   <v-app>
     <div class="d-flex justify-center align-center"
          style="width: 100%; height: 100vh;">
-      <v-card>
+      <v-card elevation="10" min-width="360">
         <nuxt/>
       </v-card>
     </div>
