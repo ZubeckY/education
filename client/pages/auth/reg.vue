@@ -5,10 +5,9 @@
     <v-card-title class="pa-2">Регистрация</v-card-title>
     <v-card-text class="pa-2">
 
-      <pre v-text="model"></pre>
 
-      <checkbox-policy :iAcceptPolicy="model.iAcceptPolicy" @emitAccept="emitAccept"/>
-
+      <checkbox-policy :iAcceptPolicy="model.iAcceptPolicy"
+                       @emitAccept="emitAccept"/>
     </v-card-text>
     <v-card-actions class="mt-0 pt-0">
       <div>Есть аккаунт?</div>
