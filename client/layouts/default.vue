@@ -1,10 +1,11 @@
 <template>
-
+  <v-app>
+    <nuxt/>
+  </v-app>
 </template>
 <script lang="ts">
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
-export default class Default extends Vue {
-
-}
+@Component
+export default class Default extends Vue {}
 </script>
 
