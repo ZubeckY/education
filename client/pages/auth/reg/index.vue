@@ -8,14 +8,19 @@
         <v-card-text class="pa-2">
 
           <v-text-field label="Имя"
+                        v-model="model.name"
                         :rules="[rules.required]"/>
           <v-text-field label="Отчество"
+                        v-model="model.surname"
                         :rules="[rules.required]"/>
           <v-text-field label="Фамилия"
+                        v-model="model.patronymic"
                         :rules="[rules.required]"/>
           <v-text-field label="Дата рождения"
+                        v-model="model.bDate"
                         :rules="[rules.required]"/>
           <v-text-field label="Email"
+                        v-model="model.email"
                         :rules="[rules.required]"/>
 
           <checkbox-policy :isReq="true"
@@ -61,6 +66,11 @@ export default class Reg extends Vue {
   valid: boolean = false
   isSend: boolean = false
   model:any = {
+    name: '',
+    surname: '',
+    patronymic: '',
+    bDate: '',
+    email: '',
     iAcceptPolicy: false
   }
   rules: any = {
