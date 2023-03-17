@@ -63,7 +63,6 @@ export default class Reg extends Vue {
   model:any = {
     iAcceptPolicy: false
   }
-
   rules: any = {
     required: (value: any) => !!value || 'Обязательное поле!',
   }

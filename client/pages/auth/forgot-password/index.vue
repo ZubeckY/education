@@ -54,7 +54,6 @@ export default class ForgotPassword extends Vue {
     this.$router.push(link)
   }
   trySend () {
-    // todo Запрос
     this.isSend = true
   }
 }
