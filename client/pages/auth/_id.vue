@@ -1,19 +1,5 @@
 <template>
-  <v-form @submit.prevent
-          v-model="valid"
-          class="pa-2">
-    <v-card-title class="pa-2">Название формы</v-card-title>
-    <v-card-text class="pa-2">
-
-    </v-card-text>
-    <v-card-actions class="my-0 py-0">
-      <v-btn class="ma-0 pa-0" color="primary"
-             text plain>Кнопка</v-btn>
-      <v-spacer></v-spacer>
-      <v-btn class="ma-0 pa-0" color="primary"
-             text plain>Кнопка</v-btn>
-    </v-card-actions>
-  </v-form>
+  <div></div>
 </template>
 <script lang="ts">
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
@@ -21,7 +7,8 @@ import {Component, Vue, Prop, Watch} from "vue-property-decorator"
   layout: 'auth'
 })
 export default class Auth extends Vue {
-  valid: boolean = false
-
+  created () {
+    this.$router.push('/auth/login')
+  }
 }
 </script>
