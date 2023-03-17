@@ -5,6 +5,12 @@
     <v-card-title class="pa-2">Регистрация</v-card-title>
     <v-card-text class="pa-2">
 
+      <v-text-field label="Имя"/>
+      <v-text-field label="Фамилия"/>
+      <v-text-field label="Отчество"/>
+      <v-text-field label="Email"/>
+      <v-text-field label="Дата рождения  "/>
+
 
       <checkbox-policy :iAcceptPolicy="model.iAcceptPolicy"
                        @emitAccept="emitAccept"/>
