@@ -1,5 +1,7 @@
 <template>
-  <v-checkbox v-model="model.iAcceptPolicy" @click="emitAccept">
+  <v-checkbox v-model="model.iAcceptPolicy"
+              :rules="isReq ? [v => !!v || 'Вы должны согласиться, чтобы продолжить!'] : ''"
+              @click="emitAccept">
     <template v-slot:label>
       <div>Я согласен с</div>
 
@@ -52,6 +54,7 @@ import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 export default class CheckboxPolicy extends Vue {
   @Prop({required: true})
   iAcceptPolicy!: boolean
+  @Prop() isReq?:boolean
 
   dialog: boolean = false
   model: any = {

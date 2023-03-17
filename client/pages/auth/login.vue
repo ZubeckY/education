@@ -44,7 +44,7 @@ import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component ({
   layout: 'auth'
 })
-export default class Auth extends Vue{
+export default class Login extends Vue{
   model: any = {
     login: '',
     password: ''

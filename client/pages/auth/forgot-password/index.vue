@@ -44,7 +44,7 @@ import {Component, Vue} from "vue-property-decorator"
 @Component ({
   layout: 'auth'
 })
-export default class Auth extends Vue {
+export default class ForgotPassword extends Vue {
   valid: boolean = false
   isSend: boolean = false
   back () {
