@@ -6,7 +6,6 @@
               class="pa-2">
         <v-card-title class="pa-2">Регистрация</v-card-title>
         <v-card-text class="pa-2">
-
           <v-text-field label="Имя"
                         v-model="model.name"
                         :rules="[rules.required]"/>
@@ -16,13 +15,13 @@
           <v-text-field label="Фамилия"
                         v-model="model.patronymic"
                         :rules="[rules.required]"/>
-          <v-text-field label="Дата рождения"
-                        v-model="model.bDate"
-                        :rules="[rules.required]"/>
+          <date-picker :value="model.bDate"
+                       :label="'Дата рождения'"
+                       :rules="[rules.required]"
+                       @save="changeDate"/>
           <v-text-field label="Email"
                         v-model="model.email"
                         :rules="[rules.required]"/>
-
           <checkbox-policy :isReq="true"
                            :iAcceptPolicy="model.iAcceptPolicy"
                            @emitAccept="emitAccept"/>
@@ -58,7 +57,7 @@
   </div>
 </template>
 <script lang="ts">
-import {Component, Vue, Prop, Watch} from "vue-property-decorator"
+import {Component, Vue} from "vue-property-decorator"
 @Component ({
   layout: 'auth'
 })
@@ -76,15 +75,15 @@ export default class Reg extends Vue {
   rules: any = {
     required: (value: any) => !!value || 'Обязательное поле!',
   }
-
   routing (link: string) {
     this.$router.push(link)
   }
-
   emitAccept (value:boolean) {
     return this.model.iAcceptPolicy = value
   }
-
+  changeDate (value: string) {
+    return this.model.bDate = value
+  }
   tryReg () {
     this.isSend = true
   }
