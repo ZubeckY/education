@@ -1,0 +1,8 @@
+{
+  "name": "docker",
+  "version": "1.0.0",
+  "scripts": {
+    "dc up": "docker-compose up",
+    "dc stop": "docker-compose stop"
+  }
+}
