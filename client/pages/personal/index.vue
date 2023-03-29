@@ -1,19 +1,13 @@
 <template>
     <!--
           todo: На завтра
-           1. Исправить баг dropdown'а         |  +
            2. Сделать страницу редактирования  |
            3. Кастомизация бкг                 |
-           4. сделать card-container           |
     -->
     <v-container>
       <v-card class="mb-16" color="#385F73">
         <v-img height="300" :src="user.background"></v-img>
-        <v-card class="mx-auto"
-                color="#385F73"
-                elevation="0"
-                rounded="0"
-                width="666">
+        <card-container :color="'#385F73'">
           <v-row class="mt-0">
             <v-col cols="auto">
               <v-avatar class="profile"
@@ -30,6 +24,7 @@
               <v-card-actions>
 
                 <v-btn text color="white"
+                       @click="routing('/personal/settings')"
                        style="text-transform: none;">
                   Редактировать
                 </v-btn>
@@ -60,14 +55,7 @@
               </v-card-actions>
             </v-col>
           </v-row>
-        </v-card>
-      </v-card>
-
-      <v-card class="mx-auto"
-              elevation="0"
-              rounded="0"
-              width="666">
-        кокнтент
+        </card-container>
       </v-card>
 
     </v-container>
