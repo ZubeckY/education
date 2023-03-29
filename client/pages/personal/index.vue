@@ -1,13 +1,9 @@
 <template>
-    <!--
-          todo: На завтра
-           2. Сделать страницу редактирования  |
-           3. Кастомизация бкг                 |
-    -->
+
     <v-container>
-      <v-card class="mb-16" color="#385F73">
+      <v-card class="mb-16" :color="user.color">
         <v-img height="300" :src="user.background"></v-img>
-        <card-container :color="'#385F73'">
+        <card-container :color="user.color">
           <v-row class="mt-0">
             <v-col cols="auto">
               <v-avatar class="profile"

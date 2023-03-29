@@ -1,89 +1,91 @@
 <template>
-  <!--  TODO
-           1.Avatar   |+
-           2. Name    |
-           3. SName   |
-           4. Background |
-           5. Color   |
-           -->
+
   <v-container>
-    <v-card class="pa-2">
-      <v-text-field
-        label="Имя"
-        v-model="params.name"
-        filled
-      ></v-text-field>
 
-      <v-text-field
-        label="Фамилия"
-        v-model="params.secondName"
-        filled
-      ></v-text-field>
+    <v-form @submit.prevent
+            v-model="valid">
 
-      <v-text-field
-        label="Фото профиля"
-        v-model="params.img"
-        filled
-      ></v-text-field>
 
-      <v-checkbox v-model="generalPhoto"
+      <v-card class="pa-2">
+        <v-text-field
+          label="Имя"
+          v-model="params.name"
+          :rules="[rules.required]"
+          filled
+        ></v-text-field>
 
-                  label="Общий фон"
+        <v-text-field
+          label="Фамилия"
+          v-model="params.secondName"
+          :rules="[rules.required]"
+          filled
+        ></v-text-field>
 
-      ></v-checkbox>
+        <v-text-field
+          label="Фото профиля"
+          v-model="params.img"
+          filled
+        ></v-text-field>
 
-      <v-text-field
-        :disabled="generalPhoto"
-        label="Бэкграунд"
-        v-model="params.background"
-        filled
-      ></v-text-field>
+        <v-checkbox v-model="generalPhoto"
 
-      <v-dialog
-        v-model="dialog"
-        width="300"
-      >
-        <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            :color="params.color"
-            dark
-            v-bind="attrs"
-            v-on="on"
-          >
-            Изменить цвет
-          </v-btn>
-        </template>
+                    label="Общий фон"
 
-        <v-card>
+        ></v-checkbox>
 
-          <v-color-picker
-            dot-size="22"
-            v-model="params.color"
-            mode="rgba"
-            swatches-max-height="180"
-          ></v-color-picker>
+        <v-text-field
+          :disabled="generalPhoto"
+          label="Бэкграунд"
+          v-model="params.background"
+          filled
+        ></v-text-field>
 
-          <v-card-actions>
-            <v-spacer></v-spacer>
+        <v-dialog
+          v-model="dialog"
+          width="300"
+        >
+          <template v-slot:activator="{ on, attrs }">
             <v-btn
-              color="primary"
-              text
-              @click="dialog = false"
+              :color="params.color"
+              dark
+              v-bind="attrs"
+              v-on="on"
             >
-              Изменить
+              Изменить цвет
             </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
-    </v-card>
+          </template>
 
-    <v-card-actions>
-      <v-spacer />
-      <v-btn>
-        Сохранить
-      </v-btn>
-    </v-card-actions>
+          <v-card>
 
+            <v-color-picker
+              dot-size="22"
+              v-model="params.color"
+              mode="rgba"
+              swatches-max-height="180"
+            ></v-color-picker>
+
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+                color="primary"
+                text
+                @click="dialog = false"
+              >
+                Изменить
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-card>
+
+      <v-card-actions>
+        <v-spacer />
+        <v-btn @click="save"
+        :disabled="!valid">
+          Сохранить
+        </v-btn>
+      </v-card-actions>
+    </v-form>
   </v-container>
 </template>
 <script lang="ts">
@@ -98,16 +100,29 @@ export default class Settings extends Vue {
     color: "",
   }
 
+  valid: boolean = false
+
   generalPhoto: boolean = true
   dialog: boolean = false
+
+  rules: any = {
+    required: (value: any) => !!value || 'Обязательное поле!',
+  }
 
   created () {
     this.params = JSON.parse(JSON.stringify(this.$store.state.user))
   }
 
-  @Watch ("params.color")
+  @Watch ("params.img")
   changeBackground () {
-    console.log("Back")
+    if (this.generalPhoto){
+      this.params.background = this.params.img
+    }
+  }
+
+  save(){
+    this.$store.commit("change", this.params)
+    this.$router.push("/personal")
   }
 
 }
