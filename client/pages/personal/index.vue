@@ -1,50 +1,45 @@
 <template>
-  <div>
-<!--
-      todo На завтра
-      1. Исправить баг dropdown'а
-      2. Сделать страницу редактирования
-      3.  Кастомизация бкг
--->
+    <!--
+          todo: На завтра
+           1. Исправить баг dropdown'а         |  +
+           2. Сделать страницу редактирования  |
+           3. Кастомизация бкг                 |
+           4. сделать card-container           |
+    -->
     <v-container>
-
-      <v-card
-        color="#385F73"
-      >
-
-        <v-card elevation="0"
-                rounded="0"
+      <v-card class="mb-16" color="#385F73">
+        <v-img height="300" :src="user.background"></v-img>
+        <v-card class="mx-auto"
                 color="#385F73"
-                dark
-                width="666"
-                class="mx-auto"
-        >
-          <v-row>
-
+                elevation="0"
+                rounded="0"
+                width="666">
+          <v-row class="mt-0">
             <v-col cols="auto">
-              <v-avatar
-                class="profile"
-                color="grey"
-                size="164"
-              >
+              <v-avatar class="profile"
+                        color="grey"
+                        size="164">
                 <v-img :src="user.img"></v-img>
               </v-avatar>
-              <v-card-title class="justify-center">{{user.name}} {{user.secondName}}</v-card-title>
+              <v-card-title class="justify-center white--text">
+                {{user.name}} {{user.secondName}}
+              </v-card-title>
             </v-col>
-
+            <v-spacer/>
             <v-col class="d-flex align-end">
-
               <v-card-actions>
 
-                <v-btn text>Редактировать</v-btn>
+                <v-btn text color="white"
+                       style="text-transform: none;">
+                  Редактировать
+                </v-btn>
                 <v-menu offset-y>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      dark
-                      v-bind="attrs"
-                      v-on="on"
-                      text
-                    >
+                    <v-btn text
+                           v-on="on"
+                           v-bind="attrs"
+                           color="white"
+                           style="text-transform: none;">
                       Ещё
                       <v-icon>
                         mdi-menu-down
@@ -52,48 +47,56 @@
                     </v-btn>
                   </template>
                   <v-list>
-                    <v-list-item
-                      v-for="(item, index) in items"
-                      :key="index"
-                    >
-                      <v-btn block text color="primary" v-if="item.role && item.role===user.role" >{{ item.title }}</v-btn>
+                    <v-list-item v-for="(item, index) in items"
+                                 :key="index">
+                      <v-btn block text
+                             color="primary"
+                             style="text-transform: none;">
+                        {{ item.title }}
+                      </v-btn>
                     </v-list-item>
                   </v-list>
                 </v-menu>
-
               </v-card-actions>
-
             </v-col>
-
           </v-row>
-
         </v-card>
-
-
       </v-card>
 
-
+      <v-card class="mx-auto"
+              elevation="0"
+              rounded="0"
+              width="666">
+        кокнтент
+      </v-card>
 
     </v-container>
-
-  </div>
 </template>
 <script lang="ts">
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
 export default class Personal extends Vue {
-  items: any = [
+  user: any = {}
+
+  itemsList: any = [
     { title: 'Файлы' },
     { title: 'Система' },
     { title: 'Статистика' },
-    { title: 'Админка', role:"admin" },
+    { title: 'Админка', role:"admin", link: '/admin' },
   ]
-  user: any = {
-    id:1,
-    name:"Niga",
-    secondName:"Nigger",
-    role:"admin",
-    img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
+
+  created () {
+    this.user = this.$store.state.user
+  }
+
+  routing (link: string) {
+    this.$router.push(link)
+  }
+
+  get items() {
+    return this.itemsList.filter((menuItem: any) =>
+      !(menuItem.role && menuItem.role != this.user.role)
+    )
   }
 }
 </script>
