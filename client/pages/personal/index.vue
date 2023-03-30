@@ -1,5 +1,4 @@
 <template>
-
     <v-container>
       <v-card class="mb-16" :color="user.color">
         <v-img height="300" :src="user.background"></v-img>
@@ -42,6 +41,7 @@
                                  :key="index">
                       <v-btn block text
                              color="primary"
+                             @click="routing(item.link)"
                              style="text-transform: none;">
                         {{ item.title }}
                       </v-btn>
@@ -63,10 +63,10 @@ export default class Personal extends Vue {
   user: any = {}
 
   itemsList: any = [
-    { title: 'Файлы' },
-    { title: 'Система' },
-    { title: 'Статистика' },
-    { title: 'Админка', role:"admin", link: '/admin' },
+    { title: 'Файлы', link: "/personal/files/" },
+    { title: 'Система', link: "" },
+    { title: 'Статистика', link: "/personal/statistic/" },
+    { title: 'Админка', role:"admin", link: '/admin/' },
   ]
 
   created () {
