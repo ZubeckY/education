@@ -2,11 +2,21 @@
   <v-container class="my-0 py-0">
     <v-card-actions class="my-0 py-0">
       <main-header-button buttonLink="/"
-                          buttonTitle="Главная"/>
+                          buttonTitle="Главная">
+      </main-header-button>
 
       <v-spacer/>
+
+      <main-header-button buttonLink="/"
+                          buttonTitle="Уведомления">
+      </main-header-button>
+      <main-header-button buttonLink="/"
+                          buttonTitle="Сообщения">
+      </main-header-button>
+
       <main-header-button buttonLink="/personal"
-                          buttonTitle="Кабинет"/>
+                          buttonTitle="Кабинет">
+      </main-header-button>
     </v-card-actions>
   </v-container>
 </template>
