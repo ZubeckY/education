@@ -12,9 +12,11 @@ class UserController {
 
     async userList (req: Request, res: Response) {
         try {
-
-        } catch (e) {
-
+            return this.userRepository.find()
+        } catch (e: any) {
+            return ({
+                message: e.message
+            })
         }
     }
 

@@ -21,7 +21,12 @@
     </div>
     <div v-else>
       <div v-if="isFind">
-        Продолжаем регистрацию
+        <v-card-title class="justify-center">Почта подтверждена</v-card-title>
+        <v-card-text class="text-center">Ваша почта подтверждена, можете продолжить пользоваться системой</v-card-text>
+        <v-card-actions>
+          <v-btn block
+                 @click="routing('/personal')">Ок</v-btn>
+        </v-card-actions>
       </div>
       <div v-else>
         <auth-error-link/>
@@ -49,6 +54,10 @@ export default class RegContinue extends Vue {
 
     this.loading = false
     this.isFind = true
+  }
+
+  routing (link: string) {
+    this.$router.push(link)
   }
 }
 </script>
