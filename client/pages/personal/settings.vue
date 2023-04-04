@@ -85,12 +85,10 @@
                             :mode.sync="mode"
                             v-model="params.color"
                             swatches-max-height="180"/>
-
             <v-select v-model="mode"
                       :items="modes"
-                      dense
-                      class="mx-2 my-0 py-0"
-                      style="max-width: 300px"/>
+                      class="mx-auto"
+                      style="max-width: 280px; width: 100%;"/>
 
             <v-card-actions>
               <v-spacer></v-spacer>
