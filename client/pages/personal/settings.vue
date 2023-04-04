@@ -3,17 +3,7 @@
 
     <!--
       todo:
-        1) Вынести color-picker в отдельный файл
-        2) Сделать color picker для текста
-        =
-        =
         Так же, нужно сдеать админ панель:
-        1) главную админки в виде панели, в следующем виде:
-          Пунккт  |   Страница со всяким
-          Пункт   |
-          Пункт   |
-                  |
-                  |
         2) В админ панели должны быть слеудющие пункты:
           2.1) Главная:
           - Т.з на гланкую странику (пока остаётся пустой)
@@ -72,34 +62,9 @@
         <v-text-field :disabled="generalPhoto"
                       v-model="params.background"
                       label="Цвет заднего фона"/>
-
-        <v-dialog v-model="dialog" width="300">
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn v-on="on"
-                   v-bind="attrs" dark
-                   :color="params.color"
-                   v-text="'Изменить цвет фона'"/>
-          </template>
-          <v-card>
-            <v-color-picker dot-size="22"
-                            :mode.sync="mode"
-                            v-model="params.color"
-                            swatches-max-height="180"/>
-            <v-select v-model="mode"
-                      :items="modes"
-                      class="mx-auto"
-                      style="max-width: 280px; width: 100%;"/>
-
-            <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" text
-                     @click="dialog = false">
-                Изменить
-              </v-btn>
-            </v-card-actions>
-
-          </v-card>
-        </v-dialog>
+        <personal-settings-color :color="params.color"
+                                 :buttonTitle="'Изменить цвет'"
+                                 @emitColor="emitColor"  />
       </v-card>
 
       <v-card-actions>
@@ -127,13 +92,10 @@ export default class Settings extends Vue {
     color: "",
   }
 
-  mode: string = 'rgba'
-  modes: string[] = ['rgba', 'hsla', 'hexa']
-
   valid: boolean = false
 
   generalPhoto: boolean = true
-  dialog: boolean = false
+
 
   rules: any = {
     required: (value: any) => !!value || 'Обязательное поле!',
@@ -153,6 +115,10 @@ export default class Settings extends Vue {
   save(){
     this.$store.commit("change", this.params)
     this.$router.push("/personal")
+  }
+
+  emitColor(color: string){
+    return this.params.color=color
   }
 
 }
