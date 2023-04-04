@@ -3,13 +3,13 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn v-on="on"
              v-bind="attrs" dark
-             :color="color"
+             :color="colorLocal"
              v-text="buttonTitle"/>
     </template>
     <v-card>
       <v-color-picker dot-size="22"
                       :mode.sync="mode"
-                      v-model="color"
+                      v-model="colorLocal"
                       swatches-max-height="180"/>
       <v-select v-model="mode"
                 :items="modes"
@@ -31,20 +31,19 @@
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
 export default class Color extends Vue {
-
   @Prop() color!: string
-
   @Prop() buttonTitle!: string
 
   mode: string = 'rgba'
+  colorLocal: string = ''
   modes: string[] = ['rgba', 'hsla', 'hexa']
-
   dialog: boolean = false
-
+  created () {
+    this.colorLocal = this.color
+  }
   @Watch("color")
-
-  emitColor(){
-    this.$emit("emitColor", this.color)
+  emitColor () {
+    this.$emit("emitColor", this.colorLocal)
   }
 
 }

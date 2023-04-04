@@ -1,6 +1,5 @@
 <template>
   <v-container>
-
     <!--
       todo:
         Так же, нужно сдеать админ панель:
@@ -62,6 +61,7 @@
         <v-text-field :disabled="generalPhoto"
                       v-model="params.background"
                       label="Цвет заднего фона"/>
+
         <personal-settings-color :color="params.color"
                                  :buttonTitle="'Изменить цвет'"
                                  @emitColor="emitColor"  />
@@ -76,7 +76,7 @@
           Сохранить
         </v-btn>
       </v-card-actions>
-
+      
     </v-form>
   </v-container>
 </template>
