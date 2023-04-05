@@ -68,11 +68,35 @@ export default class Admin extends Vue {
   }
 
   created () {
+    this.checkRole()
+   this.model = this.checkRouter()
+  }
+
+  checkRole(){
     let user = this.$store.state.user
     if (!user.role.includes('admin')) {
       return this.routing('/')
     }
     this.loading = false
+  }
+
+  checkRouter(){
+    switch(this.$router.currentRoute.path){
+      case '/admin/':
+        return  0
+      case '/admin/users':
+        return  1
+      case '/admin/roles':
+        return  2
+      case '/admin/educational-process':
+        return  3
+      case '/admin/news-and-mailings':
+        return  4
+      case '/admin/confirmations':
+        return  5
+      default:
+        return 0
+    }
   }
 
 }
