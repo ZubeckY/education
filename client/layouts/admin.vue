@@ -1,6 +1,14 @@
 <template>
   <v-app>
-    <v-container>
+    <v-progress-linear
+      v-if="loading"
+      color="teal"
+      buffer-value="0"
+      indeterminate
+      stream
+    ></v-progress-linear>
+    <v-container
+      v-else>
       <v-row>
         <v-col cols="3"><v-list>
           <v-list-item-group v-model="model">
@@ -15,9 +23,9 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
-        <v-btn text block class="justify-start" @click="routing('/')">
-          Выход
-        </v-btn></v-col>
+          <v-btn text block class="justify-start" @click="routing('/')">
+            Выход
+          </v-btn></v-col>
         <v-col> <nuxt/></v-col>
       </v-row>
     </v-container>
@@ -50,8 +58,18 @@ export default class Admin extends Vue {
   ]
   model=1
 
+  loading: boolean = true
+
   routing (link: string) {
     this.$router.push(link)
+  }
+
+  created(){
+    let  user = this.$store.state.user
+    if (!user.role.includes('admin')){
+      return this.routing('/')
+    }
+    this.loading = false
   }
 
 }
