@@ -41,7 +41,7 @@ export default class Color extends Vue {
   created () {
     this.colorLocal = this.color
   }
-  @Watch("color")
+  @Watch("colorLocal")
   emitColor () {
     this.$emit("emitColor", this.colorLocal)
   }
