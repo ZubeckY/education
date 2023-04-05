@@ -3,7 +3,6 @@
     <v-progress-linear
       v-if="loading"
       color="teal"
-      buffer-value="0"
       indeterminate
       stream
     ></v-progress-linear>
@@ -35,38 +34,42 @@
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
 export default class Admin extends Vue {
-
-  items= [
+  items: any = [
     {
-      text: 'Главное', link: '/admin'
+      text: 'Главное',
+      link: '/admin/'
     },
     {
-      text: 'Пользователи', link: '/admin/test'
+      text: 'Пользователи',
+      link: '/admin/users'
     },
     {
-      text: 'Роли', link: ''
+      text: 'Роли',
+      link: '/admin/roles'
     },
     {
-      text: 'Учебный процесс', link: ''
+      text: 'Учебный процесс',
+      link: '/admin/educational-process'
     },
     {
-      text: 'Новости и рассылки', link: ''
+      text: 'Новости и рассылки',
+      link: '/admin/news-and-mailings'
     },
     {
-      text: 'Подтверждения', link: ''
+      text: 'Подтверждения',
+      link: '/admin/confirmations'
     }
   ]
-  model=1
-
+  model: number = 0
   loading: boolean = true
 
   routing (link: string) {
     this.$router.push(link)
   }
 
-  created(){
-    let  user = this.$store.state.user
-    if (!user.role.includes('admin')){
+  created () {
+    let user = this.$store.state.user
+    if (!user.role.includes('admin')) {
       return this.routing('/')
     }
     this.loading = false

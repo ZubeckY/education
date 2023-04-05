@@ -1,6 +1,6 @@
 <template>
   <div>
-    Admin
+    EducationalProcess
   </div>
 </template>
 <script lang="ts">
@@ -8,5 +8,5 @@ import {Component, Vue} from "vue-property-decorator"
 @Component({
   layout:"admin"
 })
-export default class Admin extends Vue {}
+export default class EducationalProcess extends Vue {}
 </script>

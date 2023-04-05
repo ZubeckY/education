@@ -15,7 +15,7 @@
         <v-btn text
                color="indigo"
                class="my-0 mx-3 pa-0"
-               @click="routing('/')">
+               @click="routing('/messages')">
           Сообщения
         </v-btn>
         <v-btn text
