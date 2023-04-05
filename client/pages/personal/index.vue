@@ -10,15 +10,16 @@
                         size="164">
                 <v-img :src="user.img"></v-img>
               </v-avatar>
-              <v-card-title class="justify-center white--text">
+              <personal-title :color="user.colorText"
+                              class="justify-center">
                 {{user.name}} {{user.secondName}}
-              </v-card-title>
+              </personal-title>
             </v-col>
             <v-spacer/>
             <v-col class="d-flex align-end">
               <v-card-actions>
 
-                <v-btn text color="white"
+                <v-btn text :color="user.colorText"
                        @click="routing('/personal/settings')"
                        style="text-transform: none;">
                   Редактировать
@@ -28,7 +29,7 @@
                     <v-btn text
                            v-on="on"
                            v-bind="attrs"
-                           color="white"
+                           :color="user.colorText"
                            style="text-transform: none;">
                       Ещё
                       <v-icon>
