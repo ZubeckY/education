@@ -21,7 +21,9 @@
               </v-list-item>
             </v-list-item-group>
           </v-list>
-          <v-btn text block class="justify-start" @click="routing('/')">
+          <v-btn text block
+                 class="text-none justify-start"
+                 @click="routing('/')">
             Выход
           </v-btn>
         </v-col>
