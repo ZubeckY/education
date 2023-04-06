@@ -1,11 +1,19 @@
 <template>
   <div>
     <v-parallax class="custom-parallax" height="900"
-                src="https://cdn.vuetifyjs.com/images/parallax/material.jpg">
-      <main-header/>
+                src="https://static.vecteezy.com/system/resources/thumbnails/020/160/810/original/title-intro-parallax-animation-background-free-video.jpg">
+      <v-container>
+        <main-header style="position: fixed;"
+                     :isTransparent="isTransparent"/>
+      </v-container>
     </v-parallax>
 
-    <div style="height: 5000px"></div>
+    <v-container>
+      <div style="height: 5000px">
+
+      </div>
+    </v-container>
+
   </div>
 </template>
 <script lang="ts">
@@ -14,11 +22,17 @@ import {Component, Vue, Prop, Watch} from "vue-property-decorator"
   layout: 'clear'
 })
 export default class Pages extends Vue {
+  isTransparent: boolean = true
+
+  mounted () {
+    this.watchToPageYOffset ()
+  }
+
+  watchToPageYOffset () {
+    window.addEventListener("scroll", () => {
+      this.isTransparent = window.pageYOffset < 888
+    })
+  }
 
 }
 </script>
-<style>
-  .custom-parallax.v-parallax .v-parallax__content {
-    display: block;
-  }
-</style>

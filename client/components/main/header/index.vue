@@ -1,6 +1,6 @@
 <template>
   <v-container class="my-0 py-0">
-    <v-card :color="isTransparent ? 'transparent' : ''" elevation="0">
+    <v-card color="transparent" elevation="0">
       <v-card-actions>
         <v-btn text
                class="my-0 mx-3 pa-0"
@@ -32,12 +32,8 @@
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
 export default class Header extends Vue {
-  // @Prop() isTransparent?: boolean
-  isTransparent?: boolean = true
+  @Prop() isTransparent?: boolean
 
-  created () {
-
-  }
   routing (link: string) {
     this.$router.push(link)
   }
