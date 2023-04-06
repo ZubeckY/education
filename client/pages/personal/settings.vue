@@ -56,9 +56,11 @@
                       v-model="params.background"
                       label="Цвет заднего фона"/>
 
-        <personal-settings-color :color="params.color"
-                                 :buttonTitle="'Изменить цвет'"
-                                 @emitColor="emitColor"  />
+        <personal-settings-color-background :color="params.color"
+                                            @emitBackground="emitBackground"/>
+        <personal-settings-color-text :color="params.colorText"
+                                      @emitText="emitText"/>
+        
       </v-card>
 
       <v-card-actions>
@@ -111,8 +113,11 @@ export default class Settings extends Vue {
     this.$router.push("/personal")
   }
 
-  emitColor(color: string){
-    return this.params.color=color
+  emitBackground(value: string) {
+    return this.params.color = value
+  }
+  emitText(value: string) {
+    return this.params.colorText = value
   }
 
 }
