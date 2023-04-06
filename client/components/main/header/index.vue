@@ -1,11 +1,10 @@
 <template>
   <v-container class="my-0 py-0">
-    <v-card elevation="0">
+    <v-card :color="isTransparent ? 'transparent' : ''" elevation="0">
       <v-card-actions>
-
         <v-btn text
-               color="indigo"
                class="my-0 mx-3 pa-0"
+               :color="isTransparent ? 'white' : 'indigo'"
                @click="routing('/')">
           Главная
         </v-btn>
@@ -13,14 +12,14 @@
         <v-spacer/>
 
         <v-btn text
-               color="indigo"
                class="my-0 mx-3 pa-0"
+               :color="isTransparent ? 'white' : 'indigo'"
                @click="routing('/messages')">
           Сообщения
         </v-btn>
         <v-btn text
-               color="indigo"
                class="my-0 mx-3 pa-0"
+               :color="isTransparent ? 'white' : 'indigo'"
                @click="routing('/personal')">
           Кабинет
         </v-btn>
@@ -33,6 +32,12 @@
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
 export default class Header extends Vue {
+  // @Prop() isTransparent?: boolean
+  isTransparent?: boolean = true
+
+  created () {
+
+  }
   routing (link: string) {
     this.$router.push(link)
   }
