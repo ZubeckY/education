@@ -1,11 +1,15 @@
 <template>
   <v-dialog v-model="dialog" width="300">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn v-on="on"
+      <v-btn outlined
+             v-on="on"
              v-bind="attrs"
-             outlined
-             :color="colorLocal"
-             v-text="buttonTitle"/>
+             class="text-none">
+        {{ buttonTitle }}
+        <v-btn icon :color="colorLocal">
+          <v-icon>mdi-square-rounded</v-icon>
+        </v-btn>
+      </v-btn>
     </template>
     <v-card>
       <v-color-picker dot-size="22"
