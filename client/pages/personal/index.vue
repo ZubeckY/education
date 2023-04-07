@@ -83,7 +83,6 @@ export default class Personal extends Vue {
 
   itemsList: any = [
     { title: 'Файлы', link: "/personal/files/" },
-    { title: 'Система', link: "" },
     { title: 'Статистика', link: "/personal/statistic/" },
     { title: 'Админка', role:"admin", link: '/admin/' },
   ]

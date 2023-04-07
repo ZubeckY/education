@@ -23,7 +23,7 @@
           </v-list>
           <v-btn text block
                  class="text-none justify-start"
-                 @click="routing('/')">
+                 @click="routing('/personal')">
             Выход
           </v-btn>
         </v-col>

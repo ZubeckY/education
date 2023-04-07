@@ -12,6 +12,11 @@
 
         <v-btn text class="my-0 mx-3 pa-0"
                :color="isTransparent ? 'white' : 'indigo' && color ? color : 'indigo'"
+               @click="routing('/system/')">
+          Система
+        </v-btn>
+        <v-btn text class="my-0 mx-3 pa-0"
+               :color="isTransparent ? 'white' : 'indigo' && color ? color : 'indigo'"
                @click="routing('/messages')">
           Сообщения
         </v-btn>

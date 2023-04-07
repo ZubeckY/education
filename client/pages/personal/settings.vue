@@ -70,11 +70,15 @@
 
       <v-card-actions>
         <v-spacer/>
-        <v-btn text
-               color="primary"
-               @click="save"
-               :disabled="!valid">
+        <v-btn text color="primary"
+               :disabled="!valid"
+               @click="save">
           Сохранить
+        </v-btn>
+        <v-btn text color="primary"
+               :disabled="!valid"
+               @click="routing('/personal')">
+          Отмена
         </v-btn>
       </v-card-actions>
 
@@ -125,6 +129,10 @@ export default class Settings extends Vue {
   }
   emitText(value: string) {
     return this.params.colorText = value
+  }
+
+  routing (link: string) {
+    return this.$router.push(link)
   }
 
 }

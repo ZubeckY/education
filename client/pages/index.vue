@@ -13,7 +13,6 @@
 
       </div>
     </v-container>
-
   </div>
 </template>
 <script lang="ts">
