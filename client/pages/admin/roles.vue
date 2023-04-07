@@ -1,7 +1,6 @@
 <template>
   <v-card elevation="0">
     <v-card-title>Роли</v-card-title>
-
     <v-data-table :items="roles"
                   :headers="headers"
                   :items-per-page="-1"
@@ -18,7 +17,6 @@
         </v-btn>
       </template>
     </v-data-table>
-
   </v-card>
 </template>
 <script lang="ts">
@@ -31,7 +29,7 @@ export default class Roles extends Vue {
     { text: 'id',             value: 'id' },
     { text: 'Название',       value: 'text' },
     { text: 'Тех. обознач.',  value: 'role' },
-    { text: '',               value: 'actions' },
+    { text: '',               value: 'actions', sortable: false, },
   ]
 
   roles: any = [
