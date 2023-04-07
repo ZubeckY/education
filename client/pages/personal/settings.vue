@@ -1,5 +1,10 @@
 <template>
   <v-container>
+    <v-card elevation="0"
+            class="ma-0 pa-0"
+            :color="params.color">
+      <main-header :color="params.colorText"/>
+    </v-card>
     <!--
       todo:
         Так же, нужно сдеать админ панель:
@@ -60,7 +65,7 @@
                                             @emitBackground="emitBackground"/>
         <personal-settings-color-text :color="params.colorText"
                                       @emitText="emitText"/>
-        
+
       </v-card>
 
       <v-card-actions>
@@ -78,7 +83,9 @@
 </template>
 <script lang="ts">
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
-@Component
+@Component ({
+  layout: 'clear'
+})
 export default class Settings extends Vue {
   params: any = {
     name: "",

@@ -1,25 +1,40 @@
 <template>
-  <v-card class="mb-16" :color="user.color">
-    <main-header :color="user.colorText"/>
-    <v-container>
-      <v-img height="400" :src="user.background"></v-img>
+  <v-container>
+    <v-card elevation="0"
+            class="ma-0 pa-0"
+            :color="user.color">
+      <main-header :color="user.colorText"/>
+    </v-card>
+    <div style="height: 300px; overflow: hidden">
+      <v-img height="300"
+             :style="user.background === user.img ? 'filter: blur(40px); transform: scale(1.1)' : ''"
+             :src="user.background"></v-img>
+    </div>
+    <v-card :color="user.color">
       <card-container :color="user.color">
-        <v-row class="mt-0">
-          <v-col cols="auto">
+        <v-row class="ma-0 pa-0">
+          <v-col class="ma-0 my-3 pa-0 d-flex"
+                 cols="auto">
             <v-avatar class="profile"
                       color="grey"
-                      size="164">
+                      size="130">
               <v-img :src="user.img"></v-img>
             </v-avatar>
-            <personal-title :color="user.colorText"
-                            class="justify-center">
-              {{user.name}} {{user.secondName}}
-            </personal-title>
+            <div class="d-flex flex-column justify-end">
+              <personal-title :color="user.colorText">
+                {{user.name}} {{user.secondName}}
+              </personal-title>
+              <v-card-actions>
+                <v-btn class="text-none my-0py-0"
+                       text :color="user.colorText">
+                  Укажите информацию о себе
+                </v-btn>
+              </v-card-actions>
+            </div>
           </v-col>
           <v-spacer/>
-          <v-col class="d-flex align-end">
-            <v-card-actions>
-
+          <v-col class="ma-0 my-3 pa-0 d-flex align-end">
+            <v-card-actions class="d-flex align-end">
               <v-btn text :color="user.colorText"
                      @click="routing('/personal/settings')"
                      style="text-transform: none;">
@@ -54,11 +69,12 @@
           </v-col>
         </v-row>
       </card-container>
-    </v-container>
-  </v-card>
+    </v-card>
+  </v-container>
 </template>
 <script lang="ts">
-import {Component, Vue, Prop, Watch} from "vue-property-decorator"
+import {Component, Vue} from "vue-property-decorator"
+
 @Component ({
   layout: 'clear'
 })
