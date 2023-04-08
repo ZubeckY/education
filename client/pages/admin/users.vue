@@ -54,6 +54,24 @@ export default class Users extends Vue {
       role: 'user',
       activate: true,
       banStatus: false,
+    },
+    {
+      id: 98,
+      name: 'Андрей',
+      secondName: 'Смирнов',
+      bd: '11-12-2002',
+      role: 'user',
+      activate: true,
+      banStatus: true,
+    },
+    {
+      id: 79,
+      name: 'Иван',
+      secondName: 'Иванов',
+      bd: '11-12-2009',
+      role: 'user',
+      activate: true,
+      banStatus: false,
     }
   ]
 
