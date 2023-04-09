@@ -24,12 +24,9 @@
               <personal-title :color="user.colorText">
                 {{user.name}} {{user.secondName}}
               </personal-title>
-              <v-card-actions>
-                <v-btn class="text-none my-0py-0"
-                       text :color="user.colorText">
-                  Укажите информацию о себе
-                </v-btn>
-              </v-card-actions>
+              <personal-text :color="user.colorText">
+                {{$rest.getDate(user.bd)}}
+              </personal-text>
             </div>
           </v-col>
           <v-spacer/>

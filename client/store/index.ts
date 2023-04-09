@@ -9,7 +9,7 @@ export const state = () => ({
     role: "admin",
     color: "#385F73",
     colorText: "#FFFFFF",
-    bd: '11-12-2022',
+    bd: '2022-11-12',
     activate: true,
     banStatus: false,
   }
