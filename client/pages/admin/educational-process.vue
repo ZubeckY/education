@@ -1,7 +1,7 @@
 <template>
-  <div>
-    EducationalProcess
-  </div>
+  <v-card elevation="0">
+    <v-card-title>Учебный процесс</v-card-title>
+  </v-card>
 </template>
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator"

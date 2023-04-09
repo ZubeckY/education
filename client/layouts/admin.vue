@@ -49,7 +49,7 @@ import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 export default class Admin extends Vue {
   items: any = [
     {
-      text: 'Главное',
+      text: 'Главная',
       link: '/admin/'
     },
     {

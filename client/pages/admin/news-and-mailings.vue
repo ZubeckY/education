@@ -1,7 +1,7 @@
 <template>
-  <div>
-    NewsAndMailings
-  </div>
+  <v-card elevation="0">
+    <v-card-title>Новости и рассылки</v-card-title>
+  </v-card>
 </template>
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator"

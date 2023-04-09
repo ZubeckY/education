@@ -1,7 +1,11 @@
 <template>
   <v-app>
-    <main-header/>
     <v-container>
+      <v-card elevation="0"
+              class="ma-0 pa-0"
+              :color="user.color">
+        <main-header :color="user.colorText"/>
+      </v-card>
       <v-row>
         <v-col cols="3">
           <v-list>
@@ -25,9 +29,11 @@
   </v-app>
 </template>
 <script lang="ts">
-import {Component, Vue, Prop, Watch} from "vue-property-decorator"
+import {Component, Vue, Watch} from "vue-property-decorator"
+
 @Component
 export default class Messages extends Vue {
+  user: any = {}
   model: any =  null
   messages: any = [
     {
@@ -39,6 +45,10 @@ export default class Messages extends Vue {
       link: '/messages/two'
     },
   ]
+
+  created () {
+    this.user = this.$store.state.user
+  }
 
   routing (link: string) {
     this.$router.push(link)

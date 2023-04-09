@@ -9,7 +9,7 @@
                     fixed-header
                     hide-default-footer>
         <template v-slot:item.user="{ item }">
-          {{item.name}}  {{item.secondName}}
+          {{item.name}} {{item.secondName}}
         </template>
         <template v-slot:item.activate="{ item }">
             {{activate(item.activate)}}
@@ -21,12 +21,7 @@
           <v-btn icon color="indigo">
             <v-icon>mdi-pen</v-icon>
           </v-btn>
-          <v-btn icon color="error"
-                 @click="changeBanStatus(item.banStatus)">
-            <v-icon>
-              {{ item.banStatus ? 'mdi-lock-outline' : 'mdi-lock-open-variant-outline' }}
-            </v-icon>
-          </v-btn>
+          <admin-users-ban :item="item"/>
         </template>
       </v-data-table>
     </v-card>
@@ -87,7 +82,7 @@ export default class Users extends Vue {
   }
 
   changeBanStatus( value: boolean ){
-    return value=!value
+    return value = !value
   }
 
 }
