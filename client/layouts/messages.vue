@@ -7,7 +7,7 @@
           <v-list>
             <v-list-item-group v-model="model">
               <v-list-item
-                v-for="(item, i) in items"
+                v-for="(item, i) in messages"
                 :key="i"
                 @click="routing(item.link)">
                 <v-list-item-content>
@@ -29,8 +29,7 @@ import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
 export default class Messages extends Vue {
   model: any =  null
-
-  items: any = [
+  messages: any = [
     {
       text: 'Один',
       link: '/messages/one'

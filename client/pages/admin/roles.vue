@@ -78,11 +78,6 @@ export default class Roles extends Vue {
       text: 'Доступ запрещён',
       role: 'never'
     },
-    {
-      id: 10,
-      text: 'Бан',
-      role: 'ban'
-    },
   ]
   //
 }

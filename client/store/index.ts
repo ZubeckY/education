@@ -1,4 +1,5 @@
 export const state = () => ({
+  alerts: [],
   user: {
     id: 1,
     name: "User",
@@ -15,20 +16,30 @@ export const state = () => ({
 })
 
 export const getters = {
-  getCurrentUser (state) {
+  getCurrentUser (state: any) {
     return state.user
   }
 }
 
 export const mutations = {
-  change(state, value){
+  change (state: any, value: any) {
     state.user.name = value.name
     state.user.secondName = value.secondName
     state.user.img = value.img
     state.user.background = value.background
     state.user.color = value.color
     state.user.colorText = value.colorText
-  }
+  },
+
+  addAlert (state:any, model:any) {
+    state.alerts.push({
+      ...model,
+    })
+  },
+
+  removeAlert (state:any, item:any) {
+    state.alerts.splice(state.alerts.indexOf(item), 1)
+  },
 }
 
 export const actions = {

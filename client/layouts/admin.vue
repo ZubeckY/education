@@ -10,7 +10,7 @@
       <v-row>
         <v-col cols="3">
           <v-list>
-            <v-list-item-group v-model="model">
+            <v-list-item-group v-model="model" mandatory>
               <v-list-item
                 v-for="(item, i) in items"
                 :key="i"
@@ -32,6 +32,15 @@
         </v-col>
       </v-row>
     </v-container>
+
+    <!-- Уведомления -->
+    <v-list class="pa-0" style="position:absolute;bottom:20px;right:20px;">
+      <v-list-item class="elevation-18 pa-0 mb-3" style="min-width: 250px"
+                   v-for="item in $store.state.alerts" :key="item.id">
+        <alert-app :item="item" />
+      </v-list-item>
+    </v-list>
+
   </v-app>
 </template>
 <script lang="ts">
@@ -87,17 +96,17 @@ export default class Admin extends Vue {
   checkRouter(){
     switch(this.$router.currentRoute.path){
       case '/admin/':
-        return  0
+        return 0
       case '/admin/users':
-        return  1
+        return 1
       case '/admin/roles':
-        return  2
+        return 2
       case '/admin/educational-process':
-        return  3
+        return 3
       case '/admin/news-and-mailings':
-        return  4
+        return 4
       case '/admin/confirmations':
-        return  5
+        return 5
       default:
         return 0
     }

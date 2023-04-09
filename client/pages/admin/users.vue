@@ -21,8 +21,11 @@
           <v-btn icon color="indigo">
             <v-icon>mdi-pen</v-icon>
           </v-btn>
-          <v-btn icon color="error" @click="changeBanStatus(item.banStatus)">
-            <v-icon>{{ item.banStatus ? 'mdi-lock-outline' : 'mdi-lock-open-variant-outline' }} </v-icon>
+          <v-btn icon color="error"
+                 @click="changeBanStatus(item.banStatus)">
+            <v-icon>
+              {{ item.banStatus ? 'mdi-lock-outline' : 'mdi-lock-open-variant-outline' }}
+            </v-icon>
           </v-btn>
         </template>
       </v-data-table>
@@ -36,13 +39,13 @@ import {Component, Vue} from "vue-property-decorator"
 export default class Users extends Vue {
 
   headers: any = [
-    { text: 'id',             value: 'id' },
+    { text: 'id',                 value: 'id' },
     { text: 'Имя фамилия.',       value: 'user' },
-    { text: 'Дата рождения.',  value: 'bd' },
-    {text: 'Роль.',  value: 'role'},
-    {text: 'Статус активации.', value: 'activate'},
-    {text: 'Блокировки.', value: 'banStatus'},
-    { text: '',               value: 'actions', sortable: false, },
+    { text: 'Дата рождения.',     value: 'bd' },
+    { text: 'Роль.',              value: 'role' },
+    { text: 'Статус активации.',  value: 'activate' },
+    { text: 'Блокировки.',        value: 'banStatus' },
+    { text: '',                   value: 'actions', sortable: false, },
   ]
 
   users: any = [
