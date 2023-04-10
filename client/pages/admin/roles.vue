@@ -9,12 +9,11 @@
                   fixed-header
                   hide-default-footer>
       <template v-slot:item.actions="{ item }">
-        <v-btn icon color="indigo">
+        <v-btn :disabled="item.role === 'admin'"
+               icon color="indigo">
           <v-icon>mdi-pen</v-icon>
         </v-btn>
-        <v-btn icon color="error">
-          <v-icon>mdi-delete</v-icon>
-        </v-btn>
+        <admin-roles-delete :disabled="item.role === 'admin'"/>
       </template>
     </v-data-table>
   </v-card>

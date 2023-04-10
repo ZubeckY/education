@@ -14,6 +14,11 @@
       <template v-slot:item.bd="{ item }">
         {{ $rest.getDate(item.bd) }}
       </template>
+      <template v-slot:item.online="{item}">
+        <div :class="onlineStatus(item.online).color">
+          {{ onlineStatus(item.online).status }}
+        </div>
+      </template>
       <template v-slot:item.activate="{ item }">
         <div :class="activate(item.activate).color">
           {{ activate(item.activate).status }}
@@ -25,10 +30,15 @@
         </div>
       </template>
       <template v-slot:item.actions="{ item }">
-        <v-btn icon color="indigo">
-          <v-icon>mdi-pen</v-icon>
-        </v-btn>
-        <admin-users-ban :item="item"/>
+        <div class="d-flex flex-row">
+          <v-btn icon color="indigo" title="Информация">
+            <v-icon>mdi-information-slab-circle-outline</v-icon>
+          </v-btn>
+          <v-btn icon color="indigo" title="Редактировать">
+            <v-icon>mdi-pen</v-icon>
+          </v-btn>
+          <admin-users-ban :item="item"/>
+        </div>
       </template>
     </v-data-table>
   </v-card>
@@ -42,11 +52,12 @@ export default class Users extends Vue {
 
   headers: any = [
     { text: 'id',                 value: 'id' },
-    { text: 'Имя фамилия.',       value: 'user' },
-    { text: 'Дата рождения.',     value: 'bd' },
-    { text: 'Роль.',              value: 'role' },
-    { text: 'Статус активации.',  value: 'activate' },
-    { text: 'Блокировки.',        value: 'banStatus' },
+    { text: 'Имя фамилия',        value: 'user' },
+    { text: 'Дата рождения',      value: 'bd' },
+    { text: 'Роль',               value: 'role' },
+    { text: 'Онлайн',             value: 'online' },
+    { text: 'Активация',          value: 'activate' },
+    { text: 'Блокировка' ,        value: 'banStatus' },
     { text: '',                   value: 'actions', sortable: false, },
   ]
 
@@ -57,6 +68,7 @@ export default class Users extends Vue {
       secondName: 'Петров',
       bd: '2022-11-12',
       role: 'user',
+      online: true,
       activate: true,
       banStatus: false,
     },
@@ -66,6 +78,7 @@ export default class Users extends Vue {
       secondName: 'Смирнов',
       bd: '2002-11-12',
       role: 'user',
+      online: true,
       activate: true,
       banStatus: true,
     },
@@ -75,6 +88,7 @@ export default class Users extends Vue {
       secondName: 'Иванов',
       bd: '2009-11-12',
       role: 'user',
+      online: false,
       activate: true,
       banStatus: false,
     }
@@ -100,6 +114,15 @@ export default class Users extends Vue {
     }
   }
 
+  onlineStatus (value: boolean) {
+    return value ? {
+      status: 'Онлайн',
+      color: 'success--text'
+    } : {
+      status: 'Оффлайл',
+      color: 'error--text'
+    }
+  }
   changeBanStatus( value: boolean ){
     return value = !value
   }

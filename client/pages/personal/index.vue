@@ -79,9 +79,11 @@ export default class Personal extends Vue {
   user: any = {}
 
   itemsList: any = [
-    { title: 'Файлы', link: "/personal/files/" },
-    { title: 'Статистика', link: "/personal/statistic/" },
-    { title: 'Админка', role:"admin", link: '/admin/' },
+    { title: "Админка",     link: "/admin/", role: "admin", },
+    { title: "Файлы",       link: "/personal/files/" },
+    { title: "Система",     link: "/system/" },
+    { title: "Сообщения",   link: "/messages/" },
+    { title: "Статистика",  link: "/personal/statistic/" },
   ]
 
   created () {
@@ -94,7 +96,7 @@ export default class Personal extends Vue {
 
   get items() {
     return this.itemsList.filter((menuItem: any) =>
-      !(menuItem.role && menuItem.role != this.user.role)
+      !(menuItem.role && !this.user.role.includes(menuItem.role))
     )
   }
 }

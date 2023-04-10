@@ -3,8 +3,8 @@
             width="650">
     <template v-slot:activator="{ on, attrs }">
       <v-btn icon color="error"
-             v-bind="attrs"
-             v-on="on">
+             v-bind="attrs" v-on="on"
+             :title="item.banStatus ? 'Разблокировать' : 'Заблокировать'">
         <v-icon>
           {{ item.banStatus ? 'mdi-lock-outline' : 'mdi-lock-open-variant-outline' }}
         </v-icon>
@@ -28,6 +28,9 @@
             {{item.name}}  {{item.secondName}}
           </template>
         </v-data-table>
+
+        <v-select label="Выберите причину блокировки" dense />
+
       </v-card-text>
       <v-card-actions>
         <v-btn color="primary" text
