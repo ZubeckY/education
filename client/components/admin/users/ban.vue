@@ -25,7 +25,10 @@
                       :items="users"
                       hide-default-footer>
           <template v-slot:item.user="{ item }">
-            {{item.name}}  {{item.secondName}}
+            {{item.name}} {{item.secondName}}
+          </template>
+          <template v-slot:item.bd="{ item }">
+            {{$rest.getDate(item.bd)}}
           </template>
         </v-data-table>
 
