@@ -1,11 +1,6 @@
 <template>
   <v-app>
-    <v-progress-linear
-      v-if="loading"
-      color="teal"
-      indeterminate
-      stream
-    ></v-progress-linear>
+    <is-loading v-if="loading"/>
     <v-container v-else>
       <v-row>
         <v-col cols="3">
