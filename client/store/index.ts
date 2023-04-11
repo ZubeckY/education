@@ -7,6 +7,7 @@ export const state = () => ({
     bd: '2022-11-12',
     phone: '',
     email: '',
+    password: '',
     img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
     background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
     role: "admin",
@@ -16,6 +17,7 @@ export const state = () => ({
     activate: true,
     banStatus: false,
     privateParams: {
+      bd: true,
       files: true,
       statistic: true
     }
@@ -28,6 +30,7 @@ export const state = () => ({
       bd: '2022-11-12',
       phone: '',
       email: '',
+      password: '',
       img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       role: "admin",
@@ -37,6 +40,7 @@ export const state = () => ({
       activate: true,
       banStatus: false,
       privateParams: {
+        bd: true,
         files: true,
         statistic: true
       }
@@ -52,11 +56,13 @@ export const state = () => ({
       banStatus: false,
       phone: '',
       email: '',
+      password: '',
       img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       color: "#ffffff",
       colorText: "#333333",
       privateParams: {
+        bd: true,
         files: true,
         statistic: false
       }
@@ -72,11 +78,13 @@ export const state = () => ({
       banStatus: true,
       phone: '',
       email: '',
+      password: '',
       img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       color: "#ffffff",
       colorText: "#333333",
       privateParams: {
+        bd: true,
         files: false,
         statistic: true
       }
@@ -92,11 +100,13 @@ export const state = () => ({
       banStatus: false,
       phone: '',
       email: '',
+      password: '',
       img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       color: "#ffffff",
       colorText: "#333333",
       privateParams: {
+        bd: true,
         files: false,
         statistic: false
       }

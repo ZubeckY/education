@@ -12,7 +12,8 @@
                :style="isRequiredUser.background === isRequiredUser.img ? 'filter: blur(40px); transform: scale(1.1)' : ''"
                :src="isRequiredUser.background"></v-img>
       </div>
-      <v-card :color="isRequiredUser.color">
+      <v-card elevation="0"
+              :color="isRequiredUser.color">
         <card-container :color="isRequiredUser.color">
           <v-row class="ma-0 pa-0">
             <v-col class="ma-0 my-3 pa-0 d-flex"
@@ -136,25 +137,32 @@ export default class Personal_Id extends Vue {
         link: "/admin/",
         role: "admin",
       },
-      { title: "Файлы",
+      {
+        title: "Файлы",
         link: `/personal/${this.isRequiredUser.id}/files/`,
         private: {
           files: this.isRequiredUser?.privateParams?.files
         }
       },
-      { title: "Система",
+      {
+        title: "Система",
         link: "/system/"
       },
       {
         title: "Сообщения",
         link: "/messages/"
       },
-      { title: "Статистика",
+      {
+        title: "Статистика",
         link: `/personal/${this.isRequiredUser.id}/statistic/`,
         private: {
           statistic: this.isRequiredUser?.privateParams?.statistic
         }
       },
+      {
+        title: 'Выход',
+        link: '/auth/logout/'
+      }
     ]
   }
 
@@ -197,6 +205,7 @@ export default class Personal_Id extends Vue {
 
   get items() {
     return this.itemsList.filter((menuItem: any) =>
+      !(menuItem.title === 'Выход' && !this.isCurrentUser) &&
       !(menuItem.role && !this.currentUser?.role?.includes(menuItem.role)) &&
       !(menuItem.role && !this.isCurrentUser) &&
       !(menuItem.private?.files && !this.isCurrentUser) &&
