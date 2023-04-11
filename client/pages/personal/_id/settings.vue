@@ -2,8 +2,8 @@
   <v-container>
     <v-card elevation="0"
             class="ma-0 pa-0"
-            :color="params.color">
-      <main-header :color="params.colorText"/>
+            :color="user.color">
+      <main-header :color="user.colorText"/>
     </v-card>
     <!--
       todo:
@@ -21,25 +21,25 @@
       <v-card class="pa-2">
 
         <v-text-field label="Имя"
-                      v-model="params.name"
+                      v-model="user.name"
                       :rules="[rules.required]"/>
 
         <v-text-field label="Фамилия"
-                      v-model="params.secondName"
+                      v-model="user.secondName"
                       :rules="[rules.required]"/>
 
         <v-text-field label="Фото профиля"
-                      v-model="params.img"/>
+                      v-model="user.img"/>
 
         <v-checkbox v-model="generalPhoto" label="Общий фон"/>
 
         <v-text-field :disabled="generalPhoto"
-                      v-model="params.background"
+                      v-model="user.background"
                       label="Цвет заднего фона"/>
 
-        <personal-settings-color-background :color="params.color"
+        <personal-settings-color-background :color="user.color"
                                             @emitBackground="emitBackground"/>
-        <personal-settings-color-text :color="params.colorText"
+        <personal-settings-color-text :color="user.colorText"
                                       @emitText="emitText"/>
 
       </v-card>
@@ -67,7 +67,7 @@ import {Component, Vue, Prop, Watch} from "vue-property-decorator"
   layout: 'clear'
 })
 export default class Settings extends Vue {
-  params: any = {
+  user: any = {
     name: "",
     secondName: "",
     img: "",
@@ -85,26 +85,26 @@ export default class Settings extends Vue {
   }
 
   created () {
-    this.params = JSON.parse(JSON.stringify(this.$store.state.user))
+    this.user = JSON.parse(JSON.stringify(this.$store.state.user))
   }
 
-  @Watch ("params.img")
+  @Watch ("user.img")
   changeBackground () {
     if (this.generalPhoto){
-      this.params.background = this.params.img
+      this.user.background = this.user.img
     }
   }
 
   save(){
-    this.$store.commit("change", this.params)
+    this.$store.commit("change", this.user)
     this.$router.push("/personal")
   }
 
   emitBackground(value: string) {
-    return this.params.color = value
+    return this.user.color = value
   }
   emitText(value: string) {
-    return this.params.colorText = value
+    return this.user.colorText = value
   }
 
   routing (link: string) {

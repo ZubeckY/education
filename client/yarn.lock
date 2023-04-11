@@ -2332,6 +2332,11 @@ acorn@^8.0.4, acorn@^8.4.1, acorn@^8.5.0, acorn@^8.7.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.2.tgz#1b2f25db02af965399b9776b0c2c391276d37c4a"
   integrity sha512-xjIYgE8HBrkpd/sJqOGNspf8uHG+NOHGOw6a/Urj8taM2EXfdNAH2oFcPeIFfsv3+kz/mJrS5VuMqbNLjCa2vw==
 
+aes-encryption@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/aes-encryption/-/aes-encryption-1.0.4.tgz#5db1c66fdd4a13ce6f00bd732d1ae75faee87877"
+  integrity sha512-Mb3UAbIvY0wiK6GjZGolVLXvIRHukUoSUQOOItjHNGuEWuClSsBPWEMdLYbCPuIKIFF5YkHTtWT+VqbLIQK/Og==
+
 aggregate-error@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/aggregate-error/-/aggregate-error-3.1.0.tgz#92670ff50f5359bdb7a3e0d40d0ec30c5737687a"

@@ -163,6 +163,11 @@ acorn@^8.4.1:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.8.1.tgz#0a3f9cbecc4ec3bea6f0a80b66ae8dd2da250b73"
   integrity sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==
 
+aes-encryption@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/aes-encryption/-/aes-encryption-1.0.4.tgz#5db1c66fdd4a13ce6f00bd732d1ae75faee87877"
+  integrity sha512-Mb3UAbIvY0wiK6GjZGolVLXvIRHukUoSUQOOItjHNGuEWuClSsBPWEMdLYbCPuIKIFF5YkHTtWT+VqbLIQK/Og==
+
 ansi-regex@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.1.tgz#082cb2c89c9fe8659a311a53bd6a4dc5301db304"
