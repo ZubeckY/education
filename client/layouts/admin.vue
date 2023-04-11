@@ -87,7 +87,7 @@ export default class Admin extends Vue {
 
   checkRole(){
     let user = this.$store.state.user
-    if (!user.role.includes('admin')) {
+    if (!user.role && !user.role?.includes('admin')) {
       return this.routing('/')
     }
     this.loading = false

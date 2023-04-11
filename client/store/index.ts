@@ -2,20 +2,90 @@ export const state = () => ({
   alerts: [],
   user: {
     id: 1,
-    name: "User",
-    secondName: "User",
-    bd: '2022-11-12',
-    phone: '',
-    email: '',
-    img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
-    background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
-    role: "admin",
-    color: "#385F73",
-    colorText: "#FFFFFF",
-    online: true,
-    activate: true,
-    banStatus: false,
-  }
+    role: 'admin'
+  },
+  users: [
+    {
+      id: 1,
+      name: "User",
+      secondName: "User",
+      bd: '2022-11-12',
+      phone: '',
+      email: '',
+      img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
+      background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
+      role: "admin",
+      color: "#385F73",
+      colorText: "#FFFFFF",
+      online: true,
+      activate: true,
+      banStatus: false,
+      privateParams: {
+        files: true,
+        statistic: true
+      }
+    },
+    {
+      id: 2,
+      name: 'Петр',
+      secondName: 'Петров',
+      bd: '2022-11-12',
+      role: 'user',
+      online: true,
+      activate: true,
+      banStatus: false,
+      phone: '',
+      email: '',
+      img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
+      background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
+      color: "#ffffff",
+      colorText: "#333333",
+      privateParams: {
+        files: true,
+        statistic: false
+      }
+    },
+    {
+      id: 3,
+      name: 'Андрей',
+      secondName: 'Смирнов',
+      bd: '2002-11-12',
+      role: 'user',
+      online: true,
+      activate: true,
+      banStatus: true,
+      phone: '',
+      email: '',
+      img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
+      background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
+      color: "#ffffff",
+      colorText: "#333333",
+      privateParams: {
+        files: false,
+        statistic: true
+      }
+    },
+    {
+      id: 4,
+      name: 'Иван',
+      secondName: 'Иванов',
+      bd: '2009-11-12',
+      role: 'user',
+      online: false,
+      activate: true,
+      banStatus: false,
+      phone: '',
+      email: '',
+      img: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
+      background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
+      color: "#ffffff",
+      colorText: "#333333",
+      privateParams: {
+        files: false,
+        statistic: false
+      }
+    }
+  ]
 })
 
 export const getters = {

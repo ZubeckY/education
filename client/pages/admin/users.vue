@@ -61,38 +61,11 @@ export default class Users extends Vue {
     { text: '',                   value: 'actions', sortable: false, },
   ]
 
-  users: any = [
-    {
-      id: 2,
-      name: 'Петр',
-      secondName: 'Петров',
-      bd: '2022-11-12',
-      role: 'user',
-      online: true,
-      activate: true,
-      banStatus: false,
-    },
-    {
-      id: 98,
-      name: 'Андрей',
-      secondName: 'Смирнов',
-      bd: '2002-11-12',
-      role: 'user',
-      online: true,
-      activate: true,
-      banStatus: true,
-    },
-    {
-      id: 79,
-      name: 'Иван',
-      secondName: 'Иванов',
-      bd: '2009-11-12',
-      role: 'user',
-      online: false,
-      activate: true,
-      banStatus: false,
-    }
-  ]
+  users: any = []
+
+  created () {
+    return this.users = JSON.parse(JSON.stringify(this.$store.state.users))
+  }
 
   activate( value: boolean ){
     return value ? {

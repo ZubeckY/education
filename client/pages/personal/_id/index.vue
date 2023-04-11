@@ -2,16 +2,16 @@
   <v-container>
     <v-card elevation="0"
             class="ma-0 pa-0"
-            :color="user.color">
-      <main-header :color="user.colorText"/>
+            :color="isRequiredUser.color">
+      <main-header :color="isRequiredUser.colorText"/>
     </v-card>
     <div style="height: 300px; overflow: hidden">
       <v-img height="300"
-             :style="user.background === user.img ? 'filter: blur(40px); transform: scale(1.1)' : ''"
-             :src="user.background"></v-img>
+             :style="isRequiredUser.background === isRequiredUser.img ? 'filter: blur(40px); transform: scale(1.1)' : ''"
+             :src="isRequiredUser.background"></v-img>
     </div>
-    <v-card :color="user.color">
-      <card-container :color="user.color">
+    <v-card :color="isRequiredUser.color">
+      <card-container :color="isRequiredUser.color">
         <v-row class="ma-0 pa-0">
           <v-col class="ma-0 my-3 pa-0 d-flex"
                  cols="auto">
@@ -19,20 +19,20 @@
             <v-badge overlap bottom
                      offset-x="16"
                      offset-y="16"
-                     :color="user.online ? 'success' : '#8f8f8f'">
+                     :color="isRequiredUser.online ? 'success' : '#8f8f8f'">
               <v-avatar class="profile"
                         color="grey"
                         size="135">
-                <v-img :src="user.img"></v-img>
+                <v-img :src="isRequiredUser.img"></v-img>
               </v-avatar>
             </v-badge>
 
             <div class="d-flex flex-column justify-end">
-              <personal-title :color="user.colorText">
-                {{user.name}} {{user.secondName}}
+              <personal-title :color="isRequiredUser.colorText">
+                {{isRequiredUser.name}} {{isRequiredUser.secondName}}
               </personal-title>
-              <personal-text :color="user.colorText">
-                {{$rest.getDate(user.bd)}}
+              <personal-text :color="isRequiredUser.colorText">
+                {{$rest.getDate(isRequiredUser.bd)}}
               </personal-text>
             </div>
           </v-col>
@@ -42,9 +42,9 @@
               <v-card-actions>
                 <v-spacer/>
 
-                <v-menu offset-y>
+                <v-menu v-if="!isCurrentUser" offset-y>
                   <template v-slot:activator="{ on, attrs }">
-                    <v-btn icon :color="user.colorText"
+                    <v-btn icon :color="isRequiredUser.colorText"
                            v-bind="attrs" v-on="on">
                       <v-icon>mdi-dots-vertical</v-icon>
                     </v-btn>
@@ -63,8 +63,9 @@
 
               </v-card-actions>
               <v-card-actions class="d-flex align-end">
-                <v-btn text :color="user.colorText"
-                       @click="routing('/personal/' + currentUser.id + '/settings')"
+                <v-btn v-if="isCurrentUser"
+                       text :color="isRequiredUser.colorText"
+                       @click="routing('/personal/' + isRequiredUser.id + '/settings')"
                        style="text-transform: none;">
                   Редактировать
                 </v-btn>
@@ -73,7 +74,7 @@
                     <v-btn text
                            v-on="on"
                            v-bind="attrs"
-                           :color="user.colorText"
+                           :color="isRequiredUser.colorText"
                            style="text-transform: none;">
                       Ещё
                       <v-icon>
@@ -108,7 +109,6 @@ import {Component, Vue} from "vue-property-decorator"
   layout: 'clear'
 })
 export default class Personal_Id extends Vue {
-  user: any = {}
   itemsList: any = []
 
   userParams: any = [
@@ -121,16 +121,35 @@ export default class Personal_Id extends Vue {
   }
 
   initUser () {
-    return this.user = this.$store.state.user
+    return this.currentUser
   }
 
   initItemsList () {
     return this.itemsList = [
-      { title: "Админка",     link: "/admin/", role: "admin", },
-      { title: "Файлы",       link: `/personal/${this.currentUser.id}/files/` },
-      { title: "Система",     link: "/system/" },
-      { title: "Сообщения",   link: "/messages/" },
-      { title: "Статистика",  link: `/personal/${this.currentUser.id}/statistic/` },
+      {
+        title: "Админка",
+        link: "/admin/",
+        role: "admin",
+      },
+      { title: "Файлы",
+        link: `/personal/${this.isRequiredUser.id}/files/`,
+        private: {
+          files: this.isRequiredUser.privateParams.files
+        }
+      },
+      { title: "Система",
+        link: "/system/"
+      },
+      {
+        title: "Сообщения",
+        link: "/messages/"
+      },
+      { title: "Статистика",
+        link: `/personal/${this.isRequiredUser.id}/statistic/`,
+        private: {
+          statistic: this.isRequiredUser.privateParams.statistic
+        }
+      },
     ]
   }
 
@@ -139,12 +158,28 @@ export default class Personal_Id extends Vue {
   }
 
   get currentUser () {
-    return this.user
+    return this.$store.state.user
+  }
+
+  get isCurrentUser () {
+    return this.currentUser?.id === this.linkId
+  }
+
+  get isRequiredUser () {
+    return this.$store.state.users.filter((user: any) => (user.id === this.linkId))[0]
+  }
+
+  get linkId () {
+    let path = this.$router.currentRoute.path.split('/')
+    return Number(path[path.length - 1])
   }
 
   get items() {
     return this.itemsList.filter((menuItem: any) =>
-      !(menuItem.role && !this.user.role.includes(menuItem.role))
+      !(menuItem.role && !this.currentUser?.role?.includes(menuItem.role)) &&
+      !(menuItem.role && !this.isCurrentUser) &&
+      !(menuItem.private?.files && !this.isCurrentUser) &&
+      !(menuItem.private?.statistic && !this.isCurrentUser)
     )
   }
 }
