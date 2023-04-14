@@ -7,17 +7,17 @@
 
       <v-card-title>Значение??</v-card-title>
       <v-sparkline :gradient="gradient[0]"
-                   :value="value.one"
                    :labels="value.dayOfWeek"
-                   :line-width="1"
-                   auto-draw>
-      </v-sparkline>
+                   :value="value.one"
+                   :label-size="4"
+                   :line-width="1"/>
 
       <v-card-title>Значение??</v-card-title>
       <v-sparkline :gradient="gradient[1]"
+                   :labels="value.dayOfWeek"
                    :value="value.two"
-                   :line-width="1"
-                   auto-draw/>
+                   :label-size="4"
+                   :line-width="1"/>
 
     </v-card>
   </v-container>
