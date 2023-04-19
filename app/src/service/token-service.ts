@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken"
 import config from "../helpers/config"
 import tokenModel from "../helpers/token"
 
-export default class TokenService  {
+class TokenService {
     static generateToken (model:tokenModel) {
         try {
             return jwt.sign (model, config.jwtPhrase)
@@ -18,3 +18,5 @@ export default class TokenService  {
         }
     }
 }
+
+export default new TokenService ()

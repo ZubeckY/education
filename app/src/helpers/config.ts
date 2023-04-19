@@ -7,6 +7,12 @@ const config = {
     dbPort:          +envVal("DB_PORT"),
     dbLogin:         envVal("DB_LOGIN"),
     dbPassword:      envVal("DB_PASSWORD"),
+
+    SMTP_USER:      envVal("SMTP_USER"),
+    SMTP_HOST:      envVal("SMTP_HOST"),
+    SMTP_PORT:      envVal("SMTP_PORT"),
+    SMTP_PASSWORD:  envVal("SMTP_PASSWORD"),
+    API_URL:        envVal("API_URL"),
 }
 function envVal(key: string): string {
     let val = process.env[key]

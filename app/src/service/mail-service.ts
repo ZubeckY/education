@@ -1,7 +1,7 @@
 import config from "../helpers/config";
 const nodemailer = require('nodemailer');
 
-export class MailService {
+class MailService {
     private transporter = nodemailer.createTransport({
         host: config.SMTP_HOST,
         port: config.SMTP_PORT,
@@ -53,6 +53,6 @@ export class MailService {
         }
     }
 
-
-
 }
+
+export default new MailService ()
