@@ -75,7 +75,7 @@ export const state = () => ({
       role: 'user',
       online: true,
       activate: true,
-      banStatus: true,
+      banStatus: false,
       phone: '',
       email: '',
       password: '',

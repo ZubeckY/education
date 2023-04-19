@@ -29,24 +29,24 @@
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
 export default class Jobs extends Vue {
-  loading: boolean = true
+  loading: boolean = false
   dialog: boolean = false
 
   routing (link: string) {
     this.$router.push(link)
   }
 
-  created () {
-    this.checkRole()
-  }
+  // created () {
+  //   this.checkRole()
+  // }
 
-  checkRole(){
-    let user = this.$store.state.user
-    if (!user.role.includes(['admin', 'jobs'])) {
-      return this.dialog = true
-    }
-    this.loading = false
-  }
+  // checkRole(){
+  //   let user = this.$store.state.user
+  //   if (!user.role.includes(['admin', 'jobs'])) {
+  //     return this.dialog = true
+  //   }
+  //   this.loading = false
+  // }
 
   closeDialog () {
     this.dialog = false
