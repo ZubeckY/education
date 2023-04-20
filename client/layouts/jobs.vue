@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="position: relative">
     <div v-if="loading">
       <v-progress-linear
         color="teal"
@@ -23,6 +23,7 @@
     <v-container v-else>
       <nuxt/>
     </v-container>
+    <jobs-help style="position: fixed; bottom: 30px; right: 30px;"/>
   </v-app>
 </template>
 <script lang="ts">
@@ -36,17 +37,16 @@ export default class Jobs extends Vue {
     this.$router.push(link)
   }
 
-  // created () {
-  //   this.checkRole()
-  // }
+  created () {
+    this.checkRole()
+  }
 
-  // checkRole(){
-  //   let user = this.$store.state.user
-  //   if (!user.role.includes(['admin', 'jobs'])) {
-  //     return this.dialog = true
-  //   }
-  //   this.loading = false
-  // }
+  checkRole(){
+    if (!this.$store.state.user.role.includes(['admin', 'jobs'])) {
+      return this.dialog = true
+    }
+    this.loading = false
+  }
 
   closeDialog () {
     this.dialog = false
