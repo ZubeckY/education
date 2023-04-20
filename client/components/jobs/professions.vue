@@ -9,7 +9,7 @@
           <v-img
             :src="item.img"
             height="225px">
-            <v-card-title class="text-h6 white--text">
+            <v-card-title class="text-h6 white--text ma-2">
               <v-row
                 class="fill-height flex-column"
                 justify="space-between">
