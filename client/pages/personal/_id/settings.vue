@@ -20,7 +20,6 @@
                               v-model="user.patronymic"/>
 
                 <date-picker :value="user.bd"
-                             :isRequired="true"
                              :label="'Дата рождения'"
                              :rules="[rules.required]"
                              @save="changeDate">

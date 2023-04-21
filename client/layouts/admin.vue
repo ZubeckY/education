@@ -1,32 +1,35 @@
 <template>
   <v-app>
     <is-loading v-if="loading"/>
-    <v-container v-else>
-      <v-row>
-        <v-col cols="3">
-          <v-list>
-            <v-list-item-group v-model="model" mandatory>
-              <v-list-item
-                v-for="(item, i) in items"
-                :key="i"
-                @click="routing(item.link)">
-                <v-list-item-content>
-                  <v-list-item-title v-text="item.text"></v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </v-list-item-group>
-          </v-list>
-          <v-btn text block
-                 class="text-none justify-start"
-                 @click="routing('/personal')">
-            Выход
-          </v-btn>
-        </v-col>
-        <v-col>
+    <div v-else>
+      <!-- Навигация -->
+      <v-navigation-drawer fixed app
+                           :mini-variant="miniVariant">
+        <v-list>
+          <v-card class="text-left py-2 pl-4" elevation="0"
+                  @click.stop="miniVariant = !miniVariant">
+            <v-icon>mdi-menu</v-icon>
+          </v-card>
+          <v-list-item v-for="(item, i) in items"
+                       :key="i" :to="item.link"
+                       router exact>
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+
+      <!-- Страницы -->
+      <v-main>
+        <v-container>
           <nuxt/>
-        </v-col>
-      </v-row>
-    </v-container>
+        </v-container>
+      </v-main>
+    </div>
 
     <!-- Уведомления -->
     <v-list class="pa-0" style="position:absolute;bottom:20px;right:20px;">
@@ -35,41 +38,54 @@
         <alert-app :item="item" />
       </v-list-item>
     </v-list>
-
   </v-app>
 </template>
 <script lang="ts">
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
 export default class Admin extends Vue {
+  miniVariant: boolean = false
+
   items: any = [
     {
+      icon: 'mdi-apps',
       text: 'Главная',
       link: '/admin/'
     },
     {
+      icon: 'mdi-account-group',
       text: 'Пользователи',
       link: '/admin/users'
     },
     {
+      icon: 'mdi-account-check',
       text: 'Роли',
       link: '/admin/roles'
     },
     {
+      icon: 'mdi-account-credit-card-outline',
       text: 'Тарифы',
       link: '/admin/tariffs'
     },
     {
+      icon: 'mdi-school',
       text: 'Учебный процесс',
       link: '/admin/educational-process'
     },
     {
+      icon: 'mdi-newspaper-variant-outline',
       text: 'Новости и рассылки',
       link: '/admin/news-and-mailings'
     },
     {
+      icon: 'mdi-archive-check',
       text: 'Подтверждения',
       link: '/admin/confirmations'
+    },
+    {
+      icon: 'mdi-exit-to-app',
+      text: 'Выйти',
+      link: '/'
     }
   ]
   model: number = 0
@@ -92,7 +108,7 @@ export default class Admin extends Vue {
     this.loading = false
   }
 
-  checkRouter(){
+  checkRouter () {
     switch (this.$router.currentRoute.path) {
       case '/admin/':
         return 0
