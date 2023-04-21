@@ -2,26 +2,21 @@
   <div class="d-flex fill-height justify-center flex-wrap">
     <div v-for="(item, i) in items">
       <v-hover  v-slot="{ hover }">
-        <v-card
-          class="ma-3"
-          :elevation="hover ? 12 : 2"
-          :class="{ 'on-hover': hover }">
-          <v-img
-            :src="item.img"
-            height="225px">
+        <v-card class="ma-3"
+                :elevation="hover ? 12 : 2"
+                :class="{ 'on-hover': hover }">
+
+          <v-img :src="item.img" height="225px">
             <v-card-title class="text-h6 white--text ma-2">
-              <v-row
-                class="fill-height flex-column"
-                justify="space-between">
-                <p class="mt-4 subheading text-left">
-                  {{ item.title }}
-                </p>
+              <v-row class="fill-height flex-column"
+                     justify="space-between">
+
+                <p class="mt-4 subheading text-left">{{ item.title }}</p>
 
                 <div>
-                  <p class="ma-0 text-body-1 font-weight-bold font-italic text-left">
-                    {{ item.text }}
-                  </p>
+                  <p class="ma-0 text-body-1 font-weight-bold font-italic text-left">{{ item.text }}</p>
                 </div>
+
               </v-row>
             </v-card-title>
           </v-img>
