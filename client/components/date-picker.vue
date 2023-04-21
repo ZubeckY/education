@@ -12,6 +12,10 @@
                     :label="label"
                     :rules="rules"
                     readonly>
+        <template v-slot:label>
+          <is-required v-if="isRequired" :label="label"/>
+          <span v-else>{{ label }}</span>
+        </template>
       </v-text-field>
     </template>
     <v-date-picker v-model="date"
@@ -33,6 +37,7 @@ export default class DatePicker extends Vue {
   @Prop() rules?: any
   @Prop() label?: string
   @Prop() value?: string
+  @Prop() isRequired?: boolean
 
   date: any = null
   menu: boolean = false

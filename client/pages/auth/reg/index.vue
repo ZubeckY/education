@@ -4,24 +4,56 @@
       <v-form @submit.prevent
               v-model="valid"
               class="pa-2">
-        <v-card-title class="pa-2">Регистрация</v-card-title>
+        <v-card-title class="pa-2">
+          <v-row>
+            <v-col cols="auto">Регистрация</v-col>
+            <v-spacer/>
+            <v-col cols="auto">
+              <v-btn icon color="error" @click="routing('/')">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-col>
+          </v-row>
+        </v-card-title>
+
         <v-card-text class="pa-2">
-          <v-text-field label="Имя"
-                        v-model="model.name"
-                        :rules="[rules.required]"/>
-          <v-text-field label="Отчество"
-                        v-model="model.surname"
-                        :rules="[rules.required]"/>
-          <v-text-field label="Фамилия"
+          <v-text-field v-model="model.name"
+                        :rules="[rules.required]">
+            <template v-slot:label>
+              <is-required label="Имя"/>
+            </template>
+          </v-text-field>
+
+          <v-text-field v-model="model.surname"
+                        :rules="[rules.required]">
+            <template v-slot:label>
+              <is-required label="Отчество"/>
+            </template>
+          </v-text-field>
+
+          <v-text-field label=""
                         v-model="model.patronymic"
-                        :rules="[rules.required]"/>
-          <date-picker :value="model.bDate"
+                        :rules="[rules.required]">
+            <template v-slot:label>
+              <is-required label="Фамилия"/>
+            </template>
+          </v-text-field>
+
+          <date-picker :value="model.bd"
+                       :isRequired="true"
                        :label="'Дата рождения'"
                        :rules="[rules.required]"
-                       @save="changeDate"/>
+                       @save="changeDate">
+          </date-picker>
+
           <v-text-field label="Email"
                         v-model="model.email"
-                        :rules="[rules.required]"/>
+                        :rules="[rules.required]">
+            <template v-slot:label>
+              <is-required label="Email"/>
+            </template>
+          </v-text-field>
+
           <checkbox-policy :isReq="true"
                            :iAcceptPolicy="model.iAcceptPolicy"
                            @emitAccept="emitAccept"/>
@@ -68,7 +100,7 @@ export default class Reg extends Vue {
     name: '',
     surname: '',
     patronymic: '',
-    bDate: '',
+    bd: '',
     email: '',
     iAcceptPolicy: false
   }
@@ -82,7 +114,7 @@ export default class Reg extends Vue {
     return this.model.iAcceptPolicy = value
   }
   changeDate (value: string) {
-    return this.model.bDate = value
+    return this.model.bd = value
   }
   tryReg () {
     this.isSend = true

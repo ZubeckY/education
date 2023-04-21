@@ -2,11 +2,23 @@
   <v-form @submit.prevent
           v-model="valid"
           class="pa-2">
-    <v-card-title class="pa-2">Вход в систему</v-card-title>
+    <v-card-title class="pa-2">
+      <v-row>
+        <v-col cols="auto">Вход</v-col>
+        <v-spacer/>
+        <v-col cols="auto">
+          <v-btn icon color="error" @click="routing('/')">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-card-title>
+
     <v-card-text class="pa-2">
       <v-text-field v-model="model.login"
                     label="Логин"
                     :rules="[rules.required]"/>
+
       <v-text-field label="Пароль"
                     v-model="model.password"
                     @click:append="show = !show"

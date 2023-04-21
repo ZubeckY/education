@@ -22,10 +22,9 @@
     <div v-else>
       <div v-if="isFind">
         <v-card-title class="justify-center">Почта подтверждена</v-card-title>
-        <v-card-text class="text-center">Ваша почта подтверждена, можете продолжить пользоваться системой</v-card-text>
+        <v-card-text class="text-center">Ваша почта подтверждена, можете продолжить регистрацию</v-card-text>
         <v-card-actions>
-          <v-btn block
-                 @click="routing('/personal')">Ок</v-btn>
+          <v-btn block @click="routing('/auth/reg/next/')">Ок</v-btn>
         </v-card-actions>
       </div>
       <div v-else>
