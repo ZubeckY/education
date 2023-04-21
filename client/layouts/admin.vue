@@ -56,6 +56,10 @@ export default class Admin extends Vue {
       link: '/admin/roles'
     },
     {
+      text: 'Тарифы',
+      link: '/admin/tariffs'
+    },
+    {
       text: 'Учебный процесс',
       link: '/admin/educational-process'
     },
@@ -89,19 +93,21 @@ export default class Admin extends Vue {
   }
 
   checkRouter(){
-    switch(this.$router.currentRoute.path){
+    switch (this.$router.currentRoute.path) {
       case '/admin/':
         return 0
       case '/admin/users':
         return 1
       case '/admin/roles':
         return 2
-      case '/admin/educational-process':
+      case '/admin/tariffs':
         return 3
-      case '/admin/news-and-mailings':
+      case '/admin/educational-process':
         return 4
-      case '/admin/confirmations':
+      case '/admin/news-and-mailings':
         return 5
+      case '/admin/confirmations':
+        return 6
       default:
         return 0
     }
