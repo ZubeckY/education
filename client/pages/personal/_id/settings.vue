@@ -105,6 +105,10 @@
                             v-model="user.background"
                             label="Задний фон"/>
 
+              <v-switch v-model="$vuetify.theme.dark"
+                        label="Тёмная тема"
+                        inset persistent-hint/>
+
               <personal-settings-color-background :color="user.color"
                                                   class="d-block ma-2"
                                                   @emitBackground="emitBackground"/>
