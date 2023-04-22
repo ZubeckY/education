@@ -1,139 +1,134 @@
 <template>
   <v-container>
-    <v-form @submit.prevent v-model="valid">
-      <v-card elevation="0" class="pa-2">
-        <card-container>
-          <scroller>
+    <v-card elevation="0" class="pa-2">
+      <card-container>
+        <scroller>
 
-            <v-card class="mx-2 my-4 pa-3">
-              <v-card-title class="py-1 px-2">Личная информация</v-card-title>
-              <v-card-text>
-                <v-text-field label="Имя"
-                              v-model="user.name"
-                              :rules="[rules.required]"/>
+          <v-card class="mx-2 my-4 pa-3">
+            <v-card-title class="py-1 px-2">Личная информация</v-card-title>
+            <v-card-text>
+              <v-text-field label="Имя"
+                            v-model="user.name"
+                            :rules="[rules.required]"/>
 
-                <v-text-field label="Фамилия"
-                              v-model="user.secondName"
-                              :rules="[rules.required]"/>
+              <v-text-field label="Фамилия"
+                            v-model="user.secondName"
+                            :rules="[rules.required]"/>
 
-                <v-text-field label="Отчество"
-                              v-model="user.patronymic"/>
+              <v-text-field label="Отчество"
+                            v-model="user.patronymic"/>
 
-                <date-picker :value="user.bd"
-                             :label="'Дата рождения'"
-                             :rules="[rules.required]"
-                             @save="changeDate">
-                </date-picker>
-              </v-card-text>
-            </v-card>
+              <date-picker :value="user.bd"
+                           :label="'Дата рождения'"
+                           :rules="[rules.required]"
+                           @save="changeDate">
+              </date-picker>
+            </v-card-text>
+          </v-card>
 
-            <v-card class="mx-2 my-4 pa-3">
-              <v-card-title class="py-1 px-2">Средство связи</v-card-title>
-              <v-card-text>
-                <v-text-field label="Телефон"
-                              v-model="user.phone"
-                              placeholder="+7-000-000-00-00"
-                              v-mask="'+7-###-###-##-##'"/>
+          <v-card class="mx-2 my-4 pa-3">
+            <v-card-title class="py-1 px-2">Средство связи</v-card-title>
+            <v-card-text>
+              <v-text-field label="Телефон"
+                            v-model="user.phone"
+                            placeholder="+7-000-000-00-00"
+                            v-mask="'+7-###-###-##-##'"/>
 
-                <v-text-field label="Email"
-                              placeholder="email@mail.ru"
-                              v-model="user.email"/>
+              <v-text-field label="Email"
+                            placeholder="email@mail.ru"
+                            v-model="user.email"/>
 
-              </v-card-text>
-            </v-card>
+            </v-card-text>
+          </v-card>
 
-            <v-card class="mx-2 my-4 pa-3">
-              <v-card-title class="py-1 px-2">Безопасность</v-card-title>
-              <v-card-text>
-                <v-dialog width="500">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-text-field label="Сменить пароль" readonly
-                                  v-bind="attrs" v-on="on"/>
-                  </template>
+          <v-card class="mx-2 my-4 pa-3">
+            <v-card-title class="py-1 px-2">Безопасность</v-card-title>
+            <v-card-text>
+              <v-dialog width="500">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field label="Сменить пароль" readonly
+                                v-bind="attrs" v-on="on"/>
+                </template>
 
-                  <v-card>
-                    <v-card-title>Смена пароля</v-card-title>
+                <v-card>
+                  <v-card-title>Смена пароля</v-card-title>
 
-                    <v-card-text>
-                      <v-text-field label="Пароль"></v-text-field>
-                      <v-text-field label="Повторите пароль"></v-text-field>
-                    </v-card-text>
+                  <v-card-text>
+                    <v-text-field label="Пароль"></v-text-field>
+                    <v-text-field label="Повторите пароль"></v-text-field>
+                  </v-card-text>
 
-                    <v-card-actions>
-                      <v-btn color="primary" text>Сохранить</v-btn>
-                      <v-spacer/>
-                      <v-btn color="primary" text>Отмена</v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
+                  <v-card-actions>
+                    <v-btn color="primary" text>Сохранить</v-btn>
+                    <v-spacer/>
+                    <v-btn color="primary" text>Отмена</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
 
-                <v-dialog width="500">
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-text-field label="Контрольный вопрос" readonly
-                                  v-bind="attrs" v-on="on"/>
-                  </template>
+              <v-dialog width="500">
+                <template v-slot:activator="{ on, attrs }">
+                  <v-text-field label="Контрольный вопрос" readonly
+                                v-bind="attrs" v-on="on"/>
+                </template>
 
-                  <v-card>
-                    <v-card-title>Контрольный вопрос</v-card-title>
+                <v-card>
+                  <v-card-title>Контрольный вопрос</v-card-title>
 
-                    <v-card-text>
-                      <v-text-field label="Введите вопрос"></v-text-field>
-                      <v-text-field label="Введите ответ"></v-text-field>
-                    </v-card-text>
+                  <v-card-text>
+                    <v-text-field label="Введите вопрос"></v-text-field>
+                    <v-text-field label="Введите ответ"></v-text-field>
+                  </v-card-text>
 
-                    <v-card-actions>
-                      <v-btn color="primary" text>Сохранить</v-btn>
-                      <v-spacer/>
-                      <v-btn color="primary" text>Отмена</v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </v-card-text>
-            </v-card>
+                  <v-card-actions>
+                    <v-btn color="primary" text>Сохранить</v-btn>
+                    <v-spacer/>
+                    <v-btn color="primary" text>Отмена</v-btn>
+                  </v-card-actions>
+                </v-card>
+              </v-dialog>
+            </v-card-text>
+          </v-card>
 
-            <v-card class="mx-2 my-4 pa-3">
-              <v-card-title class="py-1 px-2">Персонализация</v-card-title>
-              <v-card-text>
-                <!-- todo Сделать загрузчик фотографий -->
-                <v-text-field label="Фото профиля"
-                              v-model="user.img"/>
+          <v-card class="mx-2 my-4 pa-3">
+            <v-card-title class="py-1 px-2">Персонализация</v-card-title>
+            <v-card-text>
+              <!-- todo Сделать загрузчик фотографий -->
+              <v-text-field label="Фото профиля"
+                            v-model="user.img"/>
 
-                <v-checkbox v-model="generalPhoto" label="Фото профиля совпадает с фоном"/>
+              <v-checkbox v-model="generalPhoto" label="Фото профиля совпадает с фоном"/>
 
-                <!-- todo Сделать настройку, позволяющую сделать размытие фона -->
+              <!-- todo Сделать настройку, позволяющую сделать размытие фона -->
 
-                <v-text-field :disabled="generalPhoto"
-                              v-model="user.background"
-                              label="Задний фон"/>
+              <v-text-field :disabled="generalPhoto"
+                            v-model="user.background"
+                            label="Задний фон"/>
 
-                <personal-settings-color-background :color="user.color"
-                                                    class="d-block ma-2"
-                                                    @emitBackground="emitBackground"/>
+              <personal-settings-color-background :color="user.color"
+                                                  class="d-block ma-2"
+                                                  @emitBackground="emitBackground"/>
 
-                <personal-settings-color-text :color="user.colorText"
-                                              class="d-block ma-2"
-                                              @emitText="emitText"/>
-              </v-card-text>
-            </v-card>
+              <personal-settings-color-text :color="user.colorText"
+                                            class="d-block ma-2"
+                                            @emitText="emitText"/>
+            </v-card-text>
+          </v-card>
 
-          </scroller>
+        </scroller>
 
-          <v-card-actions>
-            <v-spacer/>
-            <v-btn :disabled="!valid" color="primary"
-                   text @click="save">
-              Сохранить
-            </v-btn>
-            <v-btn :disabled="!valid" color="primary"
-                   text @click="routing('/personal')">
-              Отмена
-            </v-btn>
-          </v-card-actions>
+        <v-card-actions>
+          <v-spacer/>
+          <v-btn color="primary" text @click="save">
+            Сохранить
+          </v-btn>
+          <v-btn color="primary" text @click="routing('/personal')">
+            Отмена
+          </v-btn>
+        </v-card-actions>
 
-        </card-container>
-      </v-card>
-
-    </v-form>
+      </card-container>
+    </v-card>
   </v-container>
 </template>
 <script lang="ts">
@@ -143,8 +138,6 @@ import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 })
 export default class Settings extends Vue {
   user: any = {}
-
-  valid: boolean = false
 
   generalPhoto: boolean = true
 
