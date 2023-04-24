@@ -1,11 +1,6 @@
 <template>
   <v-app>
     <v-container>
-      <v-card elevation="0"
-              class="ma-0 pa-0"
-              :color="user.color">
-        <main-header :color="user.colorText"/>
-      </v-card>
       <v-row>
         <v-col cols="3">
           <v-list>

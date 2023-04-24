@@ -73,7 +73,7 @@ export default class Admin extends Vue {
     {
       icon: 'mdi-message',
       text: 'Сообщения',
-      link: '/messages'
+      link: '/system/messages'
     },
     {
       icon: 'mdi-exit-to-app',
