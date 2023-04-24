@@ -63,37 +63,17 @@ export default class Admin extends Vue {
     {
       icon: 'mdi-apps',
       text: 'Главная',
-      link: '/admin/'
-    },
-    {
-      icon: 'mdi-account-group',
-      text: 'Пользователи',
-      link: '/admin/users'
-    },
-    {
-      icon: 'mdi-account-check',
-      text: 'Роли',
-      link: '/admin/roles'
-    },
-    {
-      icon: 'mdi-account-credit-card-outline',
-      text: 'Тарифы',
-      link: '/admin/tariffs'
+      link: '/system/'
     },
     {
       icon: 'mdi-school',
       text: 'Учебный процесс',
-      link: '/admin/educational-process'
+      // link: '/system/educational-process'
     },
     {
-      icon: 'mdi-newspaper-variant-outline',
-      text: 'Новости и рассылки',
-      link: '/admin/news-and-mailings'
-    },
-    {
-      icon: 'mdi-archive-check',
-      text: 'Подтверждения',
-      link: '/admin/confirmations'
+      icon: 'mdi-message',
+      text: 'Сообщения',
+      link: '/messages'
     },
     {
       icon: 'mdi-exit-to-app',
@@ -113,8 +93,9 @@ export default class Admin extends Vue {
     this.model = this.checkRouter()
   }
 
-  checkRole(){
-    if (!this.user.role && !this.user.role?.includes('admin')) {
+  checkRole () {
+    // let user = this.$store.state.user
+    if (!this.user.role && !this.user.role?.includes("admin", "moderator")) {
       return this.routing('/')
     }
     this.loading = false
@@ -122,20 +103,10 @@ export default class Admin extends Vue {
 
   checkRouter () {
     switch (this.$router.currentRoute.path) {
-      case '/admin/':
+      case '/system/':
         return 0
-      case '/admin/users':
+      case '/system/educational-process':
         return 1
-      case '/admin/roles':
-        return 2
-      case '/admin/tariffs':
-        return 3
-      case '/admin/educational-process':
-        return 4
-      case '/admin/news-and-mailings':
-        return 5
-      case '/admin/confirmations':
-        return 6
       default:
         return 0
     }

@@ -13,6 +13,7 @@ export const state = () => ({
     role: "admin",
     color: "#385F73",
     colorText: "#FFFFFF",
+    darkTheme: false,
     online: true,
     activate: true,
     banStatus: false,
@@ -36,6 +37,7 @@ export const state = () => ({
       role: "admin",
       color: "#385F73",
       colorText: "#FFFFFF",
+      darkTheme: false,
       online: true,
       activate: true,
       banStatus: false,
@@ -61,6 +63,7 @@ export const state = () => ({
       background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       color: "#ffffff",
       colorText: "#333333",
+      darkTheme: false,
       privateParams: {
         bd: true,
         files: true,
@@ -105,6 +108,7 @@ export const state = () => ({
       background: "https://sun9-15.userapi.com/impg/e1110XwyyoTeM4dbUt2LR9eqDErVL5LoaZEoMQ/11YQkgI9-mw.jpg?size=563x782&quality=95&sign=4d04e094319a8cef739927711af9ba6b&type=album",
       color: "#ffffff",
       colorText: "#333333",
+      darkTheme: false,
       privateParams: {
         bd: true,
         files: false,

@@ -1,9 +1,10 @@
 import {Request, Response} from "express"
+import bcrypt from "bcrypt"
 import {InjectRepository} from "typeorm-typedi-extensions"
-import {getManager, Repository} from "typeorm"
+import {Repository} from "typeorm"
 import {Role, User, UserOptions} from "../entity"
 import cryptr from "../cryptr"
-import mailService from "../service/mail-service";
+import mailService from "../service/mail-service"
 
 class UserController {
     @InjectRepository(Role)
@@ -22,24 +23,45 @@ class UserController {
         }
     }
 
-    async userLogin  (req: Request, res: Response) {
+    async userLogin (req: Request, res: Response) {
         try {
+            // Получаем данные с запроса
             const {data} = req.query
             const user = JSON.parse(cryptr.decryptData(data))
-            const userFromDB = await getManager().findOne (User, {
+
+            // Получаем пользователя с БД
+            const userFromDB = await this.userRepository.findOne ({
                 where: {
                     email: user.email
                 }
             })
 
+            // Если пользователь не найден, сообщаем что что-то вбито не правильно!
             if (!userFromDB) {
                 return res.send ({
-
+                    message: 'Не верный email или пароль'
                 })
             }
 
+            // Проверяем пароль на правильность
+            const isPassEquals = await bcrypt.compare (user.password, userFromDB.password);
+            if (!isPassEquals) {
+                return res.send ({
+                    message: 'Не верный email или пароль'
+                })
+            }
 
+            // Проверяем на активацию
+            if (!userFromDB.activate) {
+                return res.send ({
+                    message: 'Вы ещё не подтвердили эл. почту'
+                })
+            }
 
+            // Если всё гуд, логинизируем!
+            return res.send ({
+                user: userFromDB
+            })
         } catch (e) {
             return res.send ({
 
@@ -49,21 +71,26 @@ class UserController {
 
     async userReg (req: Request, res: Response) {
         try {
+            // Получаем данные с запроса
             const {data} = req.query
             const user = JSON.parse(cryptr.decryptData(data))
-            const userFromDB = await getManager().findOne (User, {
+
+            // Получаем пользователя с БД
+            const userFromDB = await this.userRepository.findOne ({
                 where: {
                     email: user.email
                 }
             })
 
+            // Если найден, отправляем, что уже такой есть
             if (userFromDB) {
                 return res.send ({
-
+                    message: 'Ошибка! Пользователь с такими данными уже есть!'
                 })
             }
 
-            const role = await getManager().findOneOrFail (Role, {
+            // Ищем роль, чтоб поставить как дэфолт, иначе он не пройдет
+            const role = await this.roleRepository.findOne ({
                 where: {
                     role: 'user'
                 }
@@ -71,22 +98,22 @@ class UserController {
 
             if (!role) {
                 return res.send ({
-
+                    message: 'Роль не найдена'
                 })
             }
 
+            // Формируем пароль
+            const hashPassword = await bcrypt.hash (user.password, 3);
+
+            // Создаём пользователя
             const userOptions = new UserOptions ()
-            const createUser = new User ()
-            createUser.name       = user.name
-            createUser.secondName = user.secondName
-            createUser.patronymic = user.patronymic
-            createUser.bd         = user.bd
-            createUser.phone      = user.phone
-            createUser.email      = user.email
-            createUser.password   = user.password
-            createUser.role       = role
-            createUser.userOption = userOptions
-            await getManager().save(createUser)
+            const createUser: any = this.userRepository.create({...user})
+
+            createUser.role         = role
+            createUser.userOption   = userOptions
+            createUser.password     = hashPassword
+
+            await this.userRepository.save(createUser)
 
             const dirtyLink = {
                 id: createUser.id,
@@ -107,8 +134,28 @@ class UserController {
         }
     }
 
+    async userLogout (req: Request, res: Response) {
+        try {
+            // Продумать систему логаута + должно заносится куда-то в лог
+        } catch (e) {
+            return res.send ({
+
+            })
+        }
+    }
+
     async userEdit (req: Request, res: Response) {
         try {
+            const {data} = req.query
+            const unpackData = JSON.parse(cryptr.decryptData(data))
+
+            if (!unpackData) {
+                return res.send ({
+                    message: ''
+                })
+            }
+
+
 
         } catch (e) {
             return res.send ({
@@ -122,8 +169,7 @@ class UserController {
             const {data} = req.query
             const unpackLink = JSON.parse(cryptr.decryptData(data))
 
-
-            const user = await getManager().findOne(User, {
+            const user = await this.userRepository.findOne ({
                 where: {
                     id: unpackLink.id,
                     email: unpackLink.email
@@ -143,7 +189,7 @@ class UserController {
             }
 
             user.activate = true
-            await getManager().save(user)
+            await this.userRepository.save(user)
             return res.send ({
                 user
             })
