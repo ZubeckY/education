@@ -10,7 +10,7 @@
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator"
 @Component ({
-  layout: 'system'
+  layout: 'admin'
 })
 export default class Messages extends Vue {
 

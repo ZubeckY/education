@@ -11,7 +11,7 @@
             <v-icon>{{ miniVariant ? 'mdi-menu' : 'mdi-close' }}</v-icon>
           </v-card>
 
-          <v-list-item router exact>
+          <v-list-item exact>
             <v-list-item-action>
               <v-avatar :color="user.color" size="24">
                 <v-img :src="user.img"></v-img>
@@ -24,12 +24,19 @@
 
           <v-list-item v-for="(item, i) in items"
                        :key="i" :to="item.link"
+                       @click="item.active = false"
                        router exact>
             <v-list-item-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
+              <v-list-item-title>
+                {{ item.text }}
+                <v-badge v-show="item.active"
+                         dot color="error"
+                         offset-x="-5"
+                         offset-y="-5"/>
+              </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
@@ -63,42 +70,56 @@ export default class Admin extends Vue {
     {
       icon: 'mdi-apps',
       text: 'Главная',
-      link: '/admin/'
+      link: '/admin/',
+      active: false,
+    },
+    {
+      icon: 'mdi-message',
+      text: 'Сообщения',
+      link: '/admin/messages',
+      active: true,
     },
     {
       icon: 'mdi-account-group',
       text: 'Пользователи',
-      link: '/admin/users'
+      link: '/admin/users',
+      active: false,
     },
     {
       icon: 'mdi-account-check',
       text: 'Роли',
-      link: '/admin/roles'
+      link: '/admin/roles',
+      active: false,
     },
     {
       icon: 'mdi-account-credit-card-outline',
       text: 'Тарифы',
-      link: '/admin/tariffs'
+      link: '/admin/tariffs',
+      active: false,
     },
     {
       icon: 'mdi-school',
       text: 'Учебный процесс',
-      link: '/admin/educational-process'
+      link: '/admin/educational-process',
+      active: true,
     },
     {
       icon: 'mdi-newspaper-variant-outline',
       text: 'Новости и рассылки',
-      link: '/admin/news-and-mailings'
+      link: '/admin/news-and-mailings',
+      active: true,
     },
     {
       icon: 'mdi-archive-check',
       text: 'Подтверждения',
-      link: '/admin/confirmations'
+      link: '/admin/confirmations',
+      active: true,
     },
     {
       icon: 'mdi-exit-to-app',
       text: 'Выйти',
-      link: '/personal/'
+      link: '/personal/',
+      active: false,
     }
   ]
   model: number = 0
@@ -124,18 +145,20 @@ export default class Admin extends Vue {
     switch (this.$router.currentRoute.path) {
       case '/admin/':
         return 0
-      case '/admin/users':
+      case '/admin/messages/':
         return 1
-      case '/admin/roles':
+      case '/admin/users':
         return 2
-      case '/admin/tariffs':
+      case '/admin/roles':
         return 3
-      case '/admin/educational-process':
+      case '/admin/tariffs':
         return 4
-      case '/admin/news-and-mailings':
+      case '/admin/educational-process':
         return 5
-      case '/admin/confirmations':
+      case '/admin/news-and-mailings':
         return 6
+      case '/admin/confirmations':
+        return 7
       default:
         return 0
     }

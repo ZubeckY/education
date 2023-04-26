@@ -20,6 +20,11 @@
   height: calc(100vh - 140px);
   overflow-y: auto
 }
+.scroller-messages {
+  flex: 1 0 auto;
+  height: calc(100vh - 174px);
+  overflow-y: auto
+}
 .container {
   padding-top: 0 !important;
   max-width: 1450px !important;

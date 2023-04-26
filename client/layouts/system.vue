@@ -63,22 +63,33 @@ export default class Admin extends Vue {
     {
       icon: 'mdi-apps',
       text: 'Главная',
-      link: '/system/'
-    },
-    {
-      icon: 'mdi-school',
-      text: 'Учебный процесс',
-      // link: '/system/educational-process'
+      link: '/system/',
+      active: false,
     },
     {
       icon: 'mdi-message',
       text: 'Сообщения',
-      link: '/system/messages'
+      link: '/system/messages',
+      active: true,
+    },
+    {
+      icon: 'mdi-book-open-outline',
+      text: 'Журнал',
+      link: '/system/journal',
+      active: false,
+    },
+    {
+      icon: 'mdi-school',
+      text: 'Учебный процесс',
+      link: '/system/educational-process',
+      active: false,
+      role: ['admin', 'moderator', 'director', 'manager']
     },
     {
       icon: 'mdi-exit-to-app',
       text: 'Выйти',
-      link: '/personal/'
+      link: '/personal/',
+      active: false,
     }
   ]
   model: number = 0
@@ -105,8 +116,10 @@ export default class Admin extends Vue {
     switch (this.$router.currentRoute.path) {
       case '/system/':
         return 0
-      case '/system/educational-process':
+      case '/system/messages/':
         return 1
+      case '/system/educational-process':
+        return 2
       default:
         return 0
     }

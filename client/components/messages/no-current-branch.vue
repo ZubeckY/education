@@ -1,5 +1,5 @@
 <template>
-  <v-card class="d-flex justify-center align-center" style="height: 100vh" elevation="0">
+  <v-card class="d-flex justify-center align-center" style="height: 90vh" elevation="0">
     <v-card-text class="text-center">Выберите диалог</v-card-text>
   </v-card>
 </template>

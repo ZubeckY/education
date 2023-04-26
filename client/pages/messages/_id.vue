@@ -1,26 +1,88 @@
 <template>
-  <div>
-    <div v-for="item in messages"
-         :key="item.id"
-         style="display: flex"
-         :class="isUserMessage(item.fromId) ? 'justify-end' : ''">
-      <v-card class="py-2 px-4"
-              elevation="0"
-              max-width="400px"
-              :color="isUserMessage(item.fromId) ? '#f9f9f9' : '#f3f3f3'">
-        <v-card-text class="ma-0 pa-0 font-weight-regular">
-          {{ item.text }}
-        </v-card-text>
-        <v-card-text style="font-size: 12px;"
-                     class="text-right ma-0 pa-0">
-          {{ item.date }}
+  <v-card class="d-flex flex-column" height="90vh" elevation="0">
+
+    <v-dialog v-model="dialog"
+              width="500">
+      <template v-slot:activator="{ on, attrs }">
+
+        <v-btn class="text-none"
+               :color="getUser.color"
+               v-on="on" dark
+               v-bind="attrs">
+
+          <v-avatar :color="getUser.color" size="24">
+            <v-img :src="getUser.img"></v-img>
+          </v-avatar>
+          <v-card-title>{{ getUser.name }} {{getUser.secondName}} </v-card-title>
+
+        </v-btn>
+
+      </template>
+
+      <v-card>
+        <v-img contain
+               height="300"
+               :src="getUser.img"></v-img>
+
+        <v-card-title>
+          {{ getUser.name }} {{getUser.secondName}}
+        </v-card-title>
+
+
+        <v-divider/>
+        <v-card-text>
+          Контент
         </v-card-text>
       </v-card>
+    </v-dialog>
+
+
+
+    <div class="my-5 scroller-messages">
+      <div v-for="item in messages"
+           :key="item.id"
+           style="display: flex"
+           :class="isUserMessage(item.fromId) ? 'justify-end' : ''">
+        <v-card class="py-2 px-4"
+                elevation="0"
+                max-width="400px"
+                :color="isUserMessage(item.fromId) ? '#f9f9f9' : '#f3f3f3'">
+          <v-card-text class="ma-0 pa-0 font-weight-regular">
+            {{ item.text }}
+          </v-card-text>
+          <v-card-text style="font-size: 12px;"
+                       class="text-right ma-0 pa-0">
+            {{ item.date }}
+          </v-card-text>
+        </v-card>
+      </div>
     </div>
-  </div>
+
+    <v-card elevation="0">
+      <v-card-actions>
+
+        <v-btn icon>
+          <v-icon>mdi-paperclip</v-icon>
+        </v-btn>
+
+        <v-text-field/>
+
+        <v-btn icon>
+          <v-icon>mdi-microphone</v-icon>
+        </v-btn>
+
+        <v-btn icon>
+          <v-icon>mdi-send</v-icon>
+        </v-btn>
+
+      </v-card-actions>
+    </v-card>
+
+  </v-card>
 </template>
 <script lang="ts">
-import {Component, Vue, Prop, Watch} from "vue-property-decorator"
+import {Component, Vue} from "vue-property-decorator"
+
 @Component ({
   layout: 'messages'
 })
