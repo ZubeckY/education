@@ -8,6 +8,9 @@
       </v-container>
     </v-parallax>
 
+    <audio src="/sounds/Imagine_Dragons-Radioactive.mp3"
+           preload="auto" controls/>
+
     <v-container>
       <div style="height: 5000px">
 

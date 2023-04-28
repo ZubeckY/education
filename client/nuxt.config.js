@@ -19,6 +19,10 @@ export default {
     ]
   },
 
+  static: {
+    prefix: false
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css:  [
     '~/assets/main.css'
@@ -46,8 +50,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     'cookie-universal-nuxt',
-    '@nuxtjs/axios',
     'nuxt-socket-io',
+    '@nuxtjs/axios',
   ],
 
   io: {
@@ -90,5 +94,21 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    loaders: {
+      vue: {
+        transformAssetUrls: {
+          audio: 'src'
+        }
+      }
+    },
+    extend(config, ctx) {
+      config.module.rules.push({
+        test: /\.(ogg|mp3|wav|mpe?g)$/i,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]'
+        }
+      })
+    }
   }
 }
