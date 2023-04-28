@@ -64,13 +64,13 @@ export default class Roles extends Vue {
     },
     {
       id: 7,
-      text: 'Учений',
+      text: 'Ученик',
       role: 'student'
     },
     {
       id: 8,
-      text: 'Работа разрешена',
-      role: 'jobs'
+      text: 'Работодатель',
+      role: 'employer'
     },
     {
       id: 9,

@@ -31,9 +31,9 @@
       </template>
       <template v-slot:item.actions="{ item }">
         <div class="d-flex flex-row">
-          <v-btn icon color="indigo" title="Информация">
-            <v-icon>mdi-information-slab-circle-outline</v-icon>
-          </v-btn>
+
+          <admin-users-info :user="item"/>
+
           <v-btn icon color="indigo" title="Редактировать">
             <v-icon>mdi-pen</v-icon>
           </v-btn>
