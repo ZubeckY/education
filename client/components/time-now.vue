@@ -10,8 +10,8 @@ import {Component, Vue, Prop} from "vue-property-decorator"
 @Component
 export default class TimeNow extends Vue {
   @Prop () fontSize?: number
-  hours: any = new Date().getHours()
-  minutes: any = new Date().getMinutes()
+  hours: any = this.checkValue(new Date().getHours())
+  minutes: any = this.checkValue(new Date().getMinutes())
 
   get getFontSize () {
     return `font-size: ${this.fontSize ? this.fontSize + 'px' : '20px'}`
