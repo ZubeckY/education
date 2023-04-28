@@ -3,37 +3,8 @@
     <is-loading v-if="loading"/>
     <div v-else>
       <!-- Навигация -->
-      <v-navigation-drawer fixed app
-                           :mini-variant="miniVariant">
-        <v-list>
-          <v-card class="text-left py-2 pl-4" elevation="0"
-                  @click.stop="miniVariant = !miniVariant">
-            <v-icon>{{ miniVariant ? 'mdi-menu' : 'mdi-close' }}</v-icon>
-          </v-card>
-
-          <v-list-item router exact>
-            <v-list-item-action>
-              <v-avatar :color="user.color" size="24">
-                <v-img :src="user.img"></v-img>
-              </v-avatar>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>{{ user.name }} {{user.secondName}} </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-          <v-list-item v-for="(item, i) in items"
-                       :key="i" :to="item.link"
-                       router exact>
-            <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title>{{ item.text }}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
+      <universal-navigation :user="user"
+                            :items="items"/>
 
       <!-- Страницы -->
       <v-main>
@@ -55,9 +26,8 @@
 <script lang="ts">
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
-export default class Admin extends Vue {
+export default class System extends Vue {
   user: any = this.$store.state.user
-  miniVariant: boolean = false
 
   items: any = [
     {
@@ -69,7 +39,7 @@ export default class Admin extends Vue {
     {
       icon: 'mdi-message',
       text: 'Сообщения',
-      link: '/system/messages',
+      link: '/system/messenger',
       active: true,
     },
     {
@@ -92,6 +62,7 @@ export default class Admin extends Vue {
       active: false,
     }
   ]
+
   model: number = 0
   loading: boolean = true
 

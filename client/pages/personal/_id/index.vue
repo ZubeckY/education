@@ -150,7 +150,7 @@ export default class Personal_Id extends Vue {
       },
       {
         title: "Сообщения",
-        link: "/messages/"
+        link: "/messenger/"
       },
       {
         title: "Статистика",
