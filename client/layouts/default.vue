@@ -7,6 +7,21 @@
 <script lang="ts">
 import {Component, Vue, Prop, Watch} from "vue-property-decorator"
 @Component
-export default class Default extends Vue {}
+export default class Default extends Vue {
+  socket: any
+
+  mounted () {
+    // @ts-ignore
+    this.socket = this.$nuxtSocket({
+      channel: '/index'
+    })
+
+    /* Listen for events: */
+    this.socket
+      .on('someEvent', (msg: any, cb: any) => {
+
+      })
+  }
+}
 </script>
 
