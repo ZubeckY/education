@@ -1,5 +1,11 @@
 <template>
+  <div>
 
+
+
+    <time-now/>
+
+  </div>
 </template>
 <script lang="ts">
 import {Component, Vue} from "vue-property-decorator"
@@ -7,6 +13,7 @@ import {Component, Vue} from "vue-property-decorator"
   layout: 'system'
 })
 export default class System extends Vue {
+
 
 }
 </script>
