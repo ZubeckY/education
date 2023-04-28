@@ -1,7 +1,7 @@
 import {Entity, BaseEntity, Column, PrimaryGeneratedColumn, ManyToMany, CreateDateColumn} from "typeorm"
 import {User} from "./";
 @Entity()
-export class Dialog extends BaseEntity {
+export class DialogBranch extends BaseEntity {
     @PrimaryGeneratedColumn()
     id!: number
 
