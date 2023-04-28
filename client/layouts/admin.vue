@@ -67,6 +67,12 @@ export default class Admin extends Vue {
       active: true,
     },
     {
+      icon: 'mdi-tools',
+      text: 'Работа для учеников',
+      link: '/admin/jobs',
+      active: true,
+    },
+    {
       icon: 'mdi-newspaper-variant-outline',
       text: 'Новости и рассылки',
       link: '/admin/news-and-mailings',
@@ -85,7 +91,7 @@ export default class Admin extends Vue {
       active: false,
     }
   ]
-  model: number = 0
+
   loading: boolean = true
 
   routing (link: string) {
@@ -94,7 +100,6 @@ export default class Admin extends Vue {
 
   created () {
     this.checkRole()
-    this.model = this.checkRouter()
   }
 
   checkRole () {
@@ -102,29 +107,6 @@ export default class Admin extends Vue {
       return this.routing('/')
     }
     this.loading = false
-  }
-
-  checkRouter () {
-    switch (this.$router.currentRoute.path) {
-      case '/admin/':
-        return 0
-      case '/admin/messages/':
-        return 1
-      case '/admin/users':
-        return 2
-      case '/admin/roles':
-        return 3
-      case '/admin/tariffs':
-        return 4
-      case '/admin/educational-process':
-        return 5
-      case '/admin/news-and-mailings':
-        return 6
-      case '/admin/confirmations':
-        return 7
-      default:
-        return 0
-    }
   }
 
 }

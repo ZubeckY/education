@@ -56,6 +56,12 @@ export default class System extends Vue {
       role: ['admin', 'moderator', 'director', 'manager']
     },
     {
+      icon: 'mdi-tools',
+      text: 'Работа для учеников',
+      link: '/system/jobs',
+      active: true,
+    },
+    {
       icon: 'mdi-exit-to-app',
       text: 'Выйти',
       link: '/personal/',
@@ -63,7 +69,6 @@ export default class System extends Vue {
     }
   ]
 
-  model: number = 0
   loading: boolean = true
 
   routing (link: string) {
@@ -72,7 +77,6 @@ export default class System extends Vue {
 
   created () {
     this.checkRole()
-    this.model = this.checkRouter()
   }
 
   checkRole () {
@@ -81,19 +85,6 @@ export default class System extends Vue {
       return this.routing('/')
     }
     this.loading = false
-  }
-
-  checkRouter () {
-    switch (this.$router.currentRoute.path) {
-      case '/system/':
-        return 0
-      case '/system/messages/':
-        return 1
-      case '/system/educational-process':
-        return 2
-      default:
-        return 0
-    }
   }
 
 }
