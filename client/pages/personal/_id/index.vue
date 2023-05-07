@@ -56,6 +56,7 @@
                       <v-list-item v-for="(item, index) in userParams"
                                    :key="index">
                         <v-btn block text
+                               class="justify-start"
                                color="primary"
                                style="text-transform: none;">
                           {{ item.title }}
